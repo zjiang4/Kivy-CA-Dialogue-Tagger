@@ -1,0 +1,83 @@
+#:kivy 1.10.0
+
+<MainFrame>:
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1  # black
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        size: self.parent.size
+        pos: self.parent.pos
+        orientation: 'vertical'
+        spacing: 5
+        MenuBar:
+        DialogueView:
+        ButtonBarA:
+        ButtonBarB:
+
+
+<MenuBar>:
+    canvas.before:
+        Color:
+            rgba: 1, 0, 0, 1  # red
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    size_hint_y: None
+    height: 50
+
+<DialogueView>:
+    canvas.before:
+        Color:
+            rgba: 0, 0, 1, 1  # blue
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    size_hint: 1, 0.6
+
+<ButtonBarA>:
+    canvas.before:
+        Color:
+            rgba: 53 / 255.0, 53 / 255.0, 53 / 255.0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    size_hint_y: None
+    height: 50
+    anchor_x: 'center'
+    anchor_y: 'center'
+    ButtonBarAControls:
+#        canvas.before:
+#            Color:
+#                rgba: 0, 1, 0, 1  # green
+#            Rectangle:
+#                pos: self.pos
+#                size: self.size
+        size_hint: None, 1
+        width: 650
+        padding: 5
+        spacing: 5
+
+<ButtonBarB>:
+    canvas.before:
+        Color:
+            rgba: 53 / 255.0, 53 / 255.0, 53 / 255.0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    size_hint: 1, 0.4
+    anchor_x: 'center'
+    anchor_y: 'center'
+    ButtonBarBControls:
+#        canvas.before:
+#            Color:
+#                rgba: 0, 0, 0, 1  # black
+#            Rectangle:
+#                pos: self.pos
+#                size: self.size
+        size_hint: 0.9, 0.9
+        padding: 5
+        spacing: 5

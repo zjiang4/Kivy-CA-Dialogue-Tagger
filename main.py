@@ -18,22 +18,46 @@ Config.set('graphics', 'height', '850')
 class MenuBar(Widget):
     pass
 
-class DialogueView(Widget):
+class DialogueView(BoxLayout):
+
+    def nextBtnPress(self, button):
+
+        print('The button <%s> is being pressed' % button.text)
     pass
 
+class NavButton(Button):
+    def __init__(self, **kwargs):
+        super(NavButton, self).__init__(**kwargs)
+        # self.text = 'sdf'
+        self.size_hint_x = None
+        self.width = 50
+        self.bind(on_press=utils.callback)
+
+    # def nextBtnPress(self):
+    #     print('The button <%s> is being pressed' % self.text)
+
+class DialogueBox(Widget):
+    pass
+
+
+# Button Bar A
 class ButtonBarA(AnchorLayout):
-
     pass
+
 
 class ButtonBarAControls(BoxLayout):
     def __init__(self, **kwargs):
         super(ButtonBarAControls, self).__init__(**kwargs)
+
         self.labels = utils.load_labels(utils.ap_labels_path)
 
         for i in range(len(self.labels)):
             btn = Button(text=self.labels[i], font_size='15',size_hint_max_x=160, size_hint_max_y=40)
+            btn.bind(on_press=utils.callback)
             self.add_widget(btn)
 
+
+# Button Bar A
 class ButtonBarB(AnchorLayout):
     pass
 
@@ -42,20 +66,23 @@ class ButtonBarBControls(StackLayout):
     def __init__(self, **kwargs):
         super(ButtonBarBControls, self).__init__(**kwargs)
 
-        labels = utils.load_labels(utils.da_labels_path)
-        for i in range(len(labels)):
-            btn = Button(text=labels[i], font_size='15', size_hint_max_x=160, size_hint_max_y=40)
+        self.labels = utils.load_labels(utils.da_labels_path)
+
+        for i in range(len(self.labels)):
+            btn = Button(text=self.labels[i], font_size='15', size_hint_max_x=160, size_hint_max_y=40)
             btn.bind(on_press=utils.callback)
             self.add_widget(btn)
 
-class MainFrame(Widget):
 
+class MainFrame(Widget):
     pass
+
 
 class DialogueTaggerApp(App):
 
     def build(self):
         return MainFrame()
+
 
 if __name__ == "__main__":
     DialogueTaggerApp().run()

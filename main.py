@@ -1,10 +1,7 @@
-
+import controller
 import kivy
-from kivy.properties import ObjectProperty, StringProperty
-
-from model import Dialogue
-
 kivy.require('1.10.0')
+
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
@@ -13,14 +10,14 @@ from kivy.uix.togglebutton import ToggleButton
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.widget import Widget
-
 from kivy.app import App
 from kivy.config import Config
 Config.set('graphics', 'width', '1300')
 Config.set('graphics', 'height', '850')
 
-import controller
+# Create controller
 ctrl = controller.Controller()
+
 
 class MainFrame(Widget):
     pass
@@ -33,74 +30,79 @@ class MenuBar(Widget):
 # Dialogue View
 class DialogueView(BoxLayout):
 
+    def next(self, instance):
+        ctrl.next(instance)
 
-    pass
+    def prev(self, instance):
+        ctrl.prev(instance)
 
-
-class NavButton(Button):
-    def __init__(self, **kwargs):
-        super(NavButton, self).__init__(**kwargs)
-
-        self.bind(on_press=ctrl.next_prev)
-
-    # def blah(self, instance):
-    #     print("asdf")
 
 class DialogueBox(BoxLayout):
 
     def __init__(self, **kwargs):
         super(DialogueBox, self).__init__(**kwargs)
-        self.on_display_dialogue(ctrl.model.current_dialogue)
 
-    def on_display_dialogue(self, instance):
-        print("Here")
-        for utt in instance.utterances:
+        # Load initial dialogue to view
+        self.display_dialogue(ctrl.model.current_dialogue)
 
-            self.utterance_layout = BoxLayout(orientation='horizontal')
-            utterance_btn = ToggleButton(text=utt.text, group='utt')
+    def display_dialogue(self, dialogue):
+
+        self.clear_widgets()
+
+        for utt in dialogue.utterances:
+            utterance_layout = BoxLayout(orientation='horizontal')
+            utterance_btn = ToggleButton(text=utt.text, group='dialogue')
             utterance_ap_label = Label(text='AP Label', size_hint_x=0.1)
             utterance_da_label = Label(text='DA Label', size_hint_x=0.1)
-            self.utterance_layout.add_widget(utterance_btn)
-            self.utterance_layout.add_widget(utterance_ap_label)
-            self.utterance_layout.add_widget(utterance_da_label)
-            self.add_widget(self.utterance_layout)
+            utterance_layout.add_widget(utterance_btn)
+            utterance_layout.add_widget(utterance_ap_label)
+            utterance_layout.add_widget(utterance_da_label)
+
+            self.add_widget(utterance_layout)
 
 
 # Button Bar A
 class ButtonBarA(AnchorLayout):
-    pass
-
-
-class ButtonBarAControls(BoxLayout):
     def __init__(self, **kwargs):
-        super(ButtonBarAControls, self).__init__(**kwargs)
+        super(ButtonBarA, self).__init__(**kwargs)
 
+        # Get button labels
         self.labels = ctrl.model.ap_labels
 
+        # Create button layout
+        self.btn_layout = BoxLayout(size_hint=(None, 1), width=650, padding=5, spacing=5)
+        self.add_widget(self.btn_layout)
+
+        # Add buttons to layout
         for i in range(len(self.labels)):
             btn = Button(text=self.labels[i], font_size='15',size_hint_max_x=160, size_hint_max_y=40)
             btn.bind(on_press=ctrl.add_label)
-            self.add_widget(btn)
+            self.btn_layout.add_widget(btn)
 
 
-# Button Bar A
+# Button Bar B
 class ButtonBarB(AnchorLayout):
-    pass
-
-
-class ButtonBarBControls(StackLayout):
     def __init__(self, **kwargs):
-        super(ButtonBarBControls, self).__init__(**kwargs)
+        super(ButtonBarB, self).__init__(**kwargs)
 
+        # Get button labels
         self.labels = ctrl.model.da_labels
 
+        # Create button layout
+        self.btn_layout = StackLayout(size_hint=(0.9, 0.9), padding=5, spacing=5)
+        self.add_widget(self.btn_layout)
+
+        # Add buttons to layout
         for i in range(len(self.labels)):
             btn = Button(text=self.labels[i], font_size='15', size_hint_max_x=160, size_hint_max_y=40)
             btn.bind(on_press=ctrl.add_label)
-            self.add_widget(btn)
+            self.btn_layout.add_widget(btn)
 
 
 class DialogueTaggerApp(App):
+    icon = 'resources/nd-logo.ico'
+    title = 'Dialogue Tagger'
+
     def build(self):
         return MainFrame()
 

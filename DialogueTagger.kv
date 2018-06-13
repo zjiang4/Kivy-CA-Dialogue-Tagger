@@ -39,10 +39,11 @@
     size_hint: 1, 0.6
     orientation: 'horizontal'
 
-    NavButton: # Previous Dialogue Button
-        text: "Prev" # REMOVE
+    Button: # Previous Dialogue Button
+        id: prev_btn
         size_hint_x: None
         width: 50
+        on_press: root.prev(self)
         Image:
             source: "resources/prev.png"
             center_y: self.parent.center_y
@@ -50,6 +51,7 @@
             width: 50
 
     DialogueBox: # Dialogue Display Box
+        id: dialogue_box
         canvas.before:
             Color:
                 rgba: 0, 1, 0, 1  # green
@@ -59,10 +61,11 @@
         size_hint: 1, 1
         orientation: 'vertical'
 
-    NavButton: # Next Dialogue Button
-        text: "Next" # REMOVE
+    Button: # Next Dialogue Button
+        id: next_btn
         size_hint_x: None
         width: 50
+        on_press: root.next(self)
         Image:
             source: "resources/next.png"
             center_y: self.parent.center_y
@@ -81,11 +84,6 @@
     height: 50
     anchor_x: 'center'
     anchor_y: 'center'
-    ButtonBarAControls:
-        size_hint: None, 1
-        width: 650
-        padding: 5
-        spacing: 5
 
 <ButtonBarB>:
     canvas.before:
@@ -97,7 +95,3 @@
     size_hint: 1, 0.4
     anchor_x: 'center'
     anchor_y: 'center'
-    ButtonBarBControls:
-        size_hint: 0.9, 0.9
-        padding: 5
-        spacing: 5

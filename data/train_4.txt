@@ -1,0 +1,2 @@
+USR:Hi, please set up a reminder for my dinner on the 11th at 4pm with my sister. Thanks!
+SYS:Set! Have a good time

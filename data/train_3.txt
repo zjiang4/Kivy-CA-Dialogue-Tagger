@@ -1,0 +1,6 @@
+USR:show me the closest location where i can get chinese food
+SYS:The closest chinese restaurant is PF Changs, located 5 miles away. 
+USR:OK, please give me an address and directions via a route that avoids all heavy traffic. 
+SYS:P.F. Changs route set to 669 El Camino Real with only moderate traffic noted. 
+USR:Thank you
+SYS:You're welcome. Drive safely, and enjoy. 

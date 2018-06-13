@@ -32,7 +32,7 @@
 <DialogueView>:
     canvas.before:
         Color:
-            rgba: 1, 1, 1, 1  # white
+            rgba: 0, 0, 0, 1  # white
         Rectangle:
             pos: self.pos
             size: self.size
@@ -40,10 +40,9 @@
     orientation: 'horizontal'
 
     NavButton: # Previous Dialogue Button
-        text: "Prev"
-#        size_hint_x: None
-#        width: 50
-#        on_press: self.nextBtnPress()
+        text: "Prev" # REMOVE
+        size_hint_x: None
+        width: 50
         Image:
             source: "resources/prev.png"
             center_y: self.parent.center_y
@@ -58,9 +57,12 @@
                 pos: self.pos
                 size: self.size
         size_hint: 1, 1
+        orientation: 'vertical'
 
     NavButton: # Next Dialogue Button
-        text: "Next"
+        text: "Next" # REMOVE
+        size_hint_x: None
+        width: 50
         Image:
             source: "resources/next.png"
             center_y: self.parent.center_y

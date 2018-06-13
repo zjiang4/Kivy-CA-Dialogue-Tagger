@@ -1,0 +1,6 @@
+USR:Where is the nearest gas station?
+SYS:There is a 76 4 miles away.
+USR:What is the address?
+SYS:The 76 gas station is located at 91 El Camino Real. It is 4 miles away through moderate traffic
+USR:Thanks!
+SYS:Anytime!

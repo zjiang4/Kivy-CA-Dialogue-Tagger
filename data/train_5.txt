@@ -1,0 +1,4 @@
+USR:What time is dinner and who is it with?
+SYS:Dinner is at 7 pm with Jon.
+USR:Okay, perfect! Thanks.
+SYS:you're welcome

@@ -1,25 +1,23 @@
 #:kivy 1.10.0
 
 <MainFrame>:
-    BoxLayout:
-        canvas.before:
-            Color:
-                rgba: 0, 0, 0, 1  # black
-            Rectangle:
-                pos: self.pos
-                size: self.size
-
-        size: self.parent.size
-        pos: self.parent.pos
-        orientation: 'vertical'
-        spacing: 5
-        MenuBar:
-        DialogueView:
-        ButtonBarA:
-        ButtonBarB:
+    id: main_frame
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, 1  # black
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    orientation: 'vertical'
+    spacing: 5
+    MenuBar:
+    DialogueView:
+    ButtonBarA:
+    ButtonBarB:
 
 
 <MenuBar>:
+    id: menu_bar
     canvas.before:
         Color:
             rgba: 1, 0, 0, 1  # red
@@ -30,6 +28,7 @@
     height: 50
 
 <DialogueView>:
+    id: dialogue_view
     canvas.before:
         Color:
             rgba: 0, 0, 0, 1  # white
@@ -74,6 +73,7 @@
             width: 50
 
 <ButtonBarA>:
+    id: button_bar_a
     canvas.before:
         Color:
             rgba: 53 / 255.0, 53 / 255.0, 53 / 255.0, 1
@@ -86,6 +86,7 @@
     anchor_y: 'center'
 
 <ButtonBarB>:
+    id: button_bar_b
     canvas.before:
         Color:
             rgba: 53 / 255.0, 53 / 255.0, 53 / 255.0, 1

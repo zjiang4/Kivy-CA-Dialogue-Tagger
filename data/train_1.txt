@@ -1,6 +1,0 @@
-USR:where's the nearest parking garage
-SYS:The nearest parking garage is Dish Parking at 550 Alester Ave. Would you like directions there? 
-USR:Yes, please set directions via a route that avoids all heavy traffic if possible. 
-SYS:It looks like there is a road block being reported on the route but I will still find the quickest route to 550 Alester Ave. 
-USR:Thanks so much for your help. 
-SYS:You're very welcome!

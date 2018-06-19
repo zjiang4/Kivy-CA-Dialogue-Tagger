@@ -2,7 +2,6 @@ from kivy.graphics.context_instructions import Color
 from kivy.graphics.vertex_instructions import Rectangle
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.image import Image
-
 import controller
 import kivy
 kivy.require('1.10.0')
@@ -17,6 +16,8 @@ from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 from kivy.app import App
 from kivy.config import Config
+
+# Configuration settings
 Config.set('graphics', 'width', '1300')
 Config.set('graphics', 'height', '850')
 
@@ -24,20 +25,31 @@ Config.set('graphics', 'height', '850')
 ctrl = controller.Controller()
 
 
+# Root layout
 class MainFrame(BoxLayout):
     def __init__(self, **kwargs):
         super(MainFrame, self).__init__(**kwargs)
         self.id = 'main_frame'
 
-    def get_widget(self, id):
+    def get_widget(self, widget_id):
+
+        # Get root widgets children
         children = self.children[:]
+
+        # Check each child
         while children:
+
+            # Get the first child
             child = children.pop()
-            if child.id == id:
-                return child
+            # Add its children to the list
             children.extend(child.children)
 
+            # Return if id's match
+            if child.id == widget_id:
+                return child
 
+
+# Menu Bar
 class MenuBar(BoxLayout):
     def __init__(self, **kwargs):
         super(MenuBar, self).__init__(**kwargs)
@@ -78,14 +90,15 @@ class DialogueView(BoxLayout):
         super(DialogueView, self).__init__(**kwargs)
         self.id = 'dialogue_view'
 
-        with self.canvas:  # Instead of Kivy?
-            Color(53 / 255.0, 53 / 255.0, 53 / 255.0, 1)
-            self.rect = Rectangle(source='resources/background.png', pos=self.pos, size=self.size)
-        self.bind(pos=self.update_rect, size=self.update_rect)
-
-    def update_rect(self, *args):# Instead of Kivy?
-        self.rect.pos = self.pos
-        self.rect.size = self.size
+    ### EXAMPLE FOR DE-KIVY-FYING ###
+    #     with self.canvas:  # Instead of Kivy?
+    #         Color(53 / 255.0, 53 / 255.0, 53 / 255.0, 1)
+    #         self.rect = Rectangle(source='resources/background.png', pos=self.pos, size=self.size)
+    #     self.bind(pos=self.update_rect, size=self.update_rect)
+    #
+    # def update_rect(self, *args):# Instead of Kivy?
+    #     self.rect.pos = self.pos
+    #     self.rect.size = self.size
 
     def next(self, instance):
         ctrl.next(instance)
@@ -94,22 +107,14 @@ class DialogueView(BoxLayout):
         ctrl.prev(instance)
 
 
+# Dialogue Display Box
 class DialogueBox(BoxLayout):
     def __init__(self, **kwargs):
         super(DialogueBox, self).__init__(**kwargs)
         self.id = 'dialogue_box'
 
-        # with self.canvas:# Instead of Kivy?
-        #     # Color(0, 1, 0, 1)
-        #     self.rect = Rectangle(source='resources/background.png', pos=self.pos, size=self.size)
-        # self.bind(pos=self.update_rect, size=self.update_rect)
-
         # Load initial dialogue to view
         self.display_dialogue(ctrl.model.current_dialogue)
-
-    def update_rect(self, *args):# Instead of Kivy?
-        self.rect.pos = self.pos
-        self.rect.size = self.size
 
     def display_dialogue(self, dialogue, selected_id=0):
 
@@ -119,17 +124,17 @@ class DialogueBox(BoxLayout):
         # Add each utterance to layout
         for i in range(len(dialogue.utterances)):
 
-            # Utterances layout
+            # Create utterances layout
             utterance_layout = BoxLayout(orientation='horizontal')
 
-            # Utterances button
+            # Create utterances button
             utterance_btn = ToggleButton(text=dialogue.utterances[i].text, id=str(i), group='utterances')
             utterance_btn.bind(on_press=ctrl.set_selected_utt)
             # Set default or currently selected button
             if i == selected_id:
                 utterance_btn.state = 'down'
 
-            # Utterances labels
+            # Create utterances labels
             utterance_ap_label = Label(text=dialogue.utterances[i].ap_label, size_hint_x=0.1)
             utterance_da_label = Label(text=dialogue.utterances[i].da_label, size_hint_x=0.1)
 

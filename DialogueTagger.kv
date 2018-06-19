@@ -15,7 +15,6 @@
     ButtonBarA:
     ButtonBarB:
 
-
 <MenuBar>:
     id: menu_bar
     canvas.before:
@@ -29,16 +28,17 @@
 
 <DialogueView>:
     id: dialogue_view
-#    canvas.before:
-#        Color:
-#            rgba: 0, 0, 0, 1  # white
-#        Rectangle:
-#            pos: self.pos
-#            size: self.size
+    canvas.before:
+        Color:
+            rgba: 53 / 255.0, 53 / 255.0, 53 / 255.0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'resources/background.png'
     size_hint: 1, 0.6
     orientation: 'horizontal'
 
-    Button: # Previous Dialogue Button
+    Button:
         id: prev_btn
         size_hint_x: None
         width: 50
@@ -49,18 +49,18 @@
             size_hint_x: None
             width: 50
 
-    DialogueBox: # Dialogue Display Box
+    DialogueBox:
         id: dialogue_box
-#        canvas.before:
-#            Color:
-#                rgba: 0, 1, 0, 1  # green
-#            Rectangle:
-#                pos: self.pos
-#                size: self.size
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 0
+            Rectangle:
+                pos: self.pos
+                size: self.size
         size_hint: 1, 1
         orientation: 'vertical'
 
-    Button: # Next Dialogue Button
+    Button:
         id: next_btn
         size_hint_x: None
         width: 50

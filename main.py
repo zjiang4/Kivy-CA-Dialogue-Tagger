@@ -1,3 +1,8 @@
+from kivy.graphics.context_instructions import Color
+from kivy.graphics.vertex_instructions import Rectangle
+from kivy.uix.behaviors import ButtonBehavior
+from kivy.uix.image import Image
+
 import controller
 import kivy
 kivy.require('1.10.0')
@@ -33,10 +38,38 @@ class MainFrame(BoxLayout):
             children.extend(child.children)
 
 
-class MenuBar(Widget):
+class MenuBar(BoxLayout):
     def __init__(self, **kwargs):
         super(MenuBar, self).__init__(**kwargs)
         self.id = 'menu_bar'
+
+        self.padding = 5
+        self.spacing = 5
+
+        self.menu_btn_layout = AnchorLayout(anchor_x='center', anchor_y='center', width=50, size_hint=(None, 1))
+        self.menu_btn = Button(size=(40, 40))
+        self.menu_btn.bind(on_press=ctrl.menu)
+        self.menu_img = Image(source='resources/menu.png', height=40, width=40)
+        self.menu_btn_layout.add_widget(self.menu_btn)
+        self.menu_btn_layout.add_widget(self.menu_img)
+
+        self.save_btn_layout = AnchorLayout(anchor_x='center', anchor_y='center', width=50, size_hint=(None, 1))
+        self.save_btn = Button(size=(40, 40))
+        self.save_btn.bind(on_press=ctrl.save)
+        self.save_img = Image(source='resources/save.png', height=40, width=40)
+        self.save_btn_layout.add_widget(self.save_btn)
+        self.save_btn_layout.add_widget(self.save_img)
+
+        self.refresh_btn_layout = AnchorLayout(anchor_x='center', anchor_y='center', width=50, size_hint=(None, 1))
+        self.refresh_btn = Button(size=(40, 40))
+        self.refresh_btn.bind(on_press=ctrl.refresh)
+        self.refresh_img = Image(source='resources/refresh.png', height=40, width=40)
+        self.refresh_btn_layout.add_widget(self.refresh_btn)
+        self.refresh_btn_layout.add_widget(self.refresh_img)
+
+        self.add_widget(self.menu_btn_layout)
+        self.add_widget(self.save_btn_layout)
+        self.add_widget(self.refresh_btn_layout)
 
 
 # Dialogue View
@@ -44,6 +77,15 @@ class DialogueView(BoxLayout):
     def __init__(self, **kwargs):
         super(DialogueView, self).__init__(**kwargs)
         self.id = 'dialogue_view'
+
+        with self.canvas:  # Instead of Kivy?
+            Color(53 / 255.0, 53 / 255.0, 53 / 255.0, 1)
+            self.rect = Rectangle(source='resources/background.png', pos=self.pos, size=self.size)
+        self.bind(pos=self.update_rect, size=self.update_rect)
+
+    def update_rect(self, *args):# Instead of Kivy?
+        self.rect.pos = self.pos
+        self.rect.size = self.size
 
     def next(self, instance):
         ctrl.next(instance)
@@ -57,8 +99,17 @@ class DialogueBox(BoxLayout):
         super(DialogueBox, self).__init__(**kwargs)
         self.id = 'dialogue_box'
 
+        # with self.canvas:# Instead of Kivy?
+        #     # Color(0, 1, 0, 1)
+        #     self.rect = Rectangle(source='resources/background.png', pos=self.pos, size=self.size)
+        # self.bind(pos=self.update_rect, size=self.update_rect)
+
         # Load initial dialogue to view
         self.display_dialogue(ctrl.model.current_dialogue)
+
+    def update_rect(self, *args):# Instead of Kivy?
+        self.rect.pos = self.pos
+        self.rect.size = self.size
 
     def display_dialogue(self, dialogue, selected_id=0):
 
@@ -105,7 +156,7 @@ class ButtonBarA(AnchorLayout):
 
         # Add buttons to layout
         for i in range(len(self.labels)):
-            btn = Button(text=self.labels[i], font_size='15',size_hint_max_x=160, size_hint_max_y=40)
+            btn = Button(text=self.labels[i], font_size='15', size_hint_max_x=160, size_hint_max_y=40)
             btn.bind(on_press=ctrl.add_ap_label)
             self.btn_layout.add_widget(btn)
 

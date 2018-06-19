@@ -20,7 +20,7 @@
     id: menu_bar
     canvas.before:
         Color:
-            rgba: 1, 0, 0, 1  # red
+            rgba: 53 / 255.0, 53 / 255.0, 53 / 255.0, 1
         Rectangle:
             pos: self.pos
             size: self.size
@@ -29,12 +29,12 @@
 
 <DialogueView>:
     id: dialogue_view
-    canvas.before:
-        Color:
-            rgba: 0, 0, 0, 1  # white
-        Rectangle:
-            pos: self.pos
-            size: self.size
+#    canvas.before:
+#        Color:
+#            rgba: 0, 0, 0, 1  # white
+#        Rectangle:
+#            pos: self.pos
+#            size: self.size
     size_hint: 1, 0.6
     orientation: 'horizontal'
 
@@ -44,19 +44,19 @@
         width: 50
         on_press: root.prev(self)
         Image:
-            source: "resources/prev.png"
+            source: 'resources/prev.png'
             center_y: self.parent.center_y
             size_hint_x: None
             width: 50
 
     DialogueBox: # Dialogue Display Box
         id: dialogue_box
-        canvas.before:
-            Color:
-                rgba: 0, 1, 0, 1  # green
-            Rectangle:
-                pos: self.pos
-                size: self.size
+#        canvas.before:
+#            Color:
+#                rgba: 0, 1, 0, 1  # green
+#            Rectangle:
+#                pos: self.pos
+#                size: self.size
         size_hint: 1, 1
         orientation: 'vertical'
 
@@ -66,7 +66,7 @@
         width: 50
         on_press: root.next(self)
         Image:
-            source: "resources/next.png"
+            source: 'resources/next.png'
             center_y: self.parent.center_y
             center_x: self.parent.center_x
             size_hint_x: None

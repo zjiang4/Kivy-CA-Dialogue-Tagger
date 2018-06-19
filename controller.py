@@ -9,6 +9,15 @@ class Controller:
         model = Model()
         self.model = model
 
+    def menu(self, instance):
+        print('The button <menu> is being pressed')
+
+    def save(self, instance):
+        print('The button <save> is being pressed')
+
+    def refresh(self, instance):
+        print('The button <refresh> is being pressed')
+
     def update_dialogue(self, selected_id=0):
 
         # Get dialogue box and call update function

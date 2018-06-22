@@ -2,16 +2,34 @@
 Tag dialogue utterances with Dialogue Acts and Adjacency Pairs
 
 # TODO
-- De kivify?
-- Save functionality
-- Look of dialogue view (size of text btn/color of text or background for labels) label clear button?
-- Menu Bar - Create ImageButttons instead (hover/press etc)
+## Menu
+- Load functionality
+- Save only labeld functionality?
+- Refresh/clear functionality
+- Create ImageButttons instead (hover/press etc)
+- Info display of current dialogue and number
+- Select dialogue by number (change numbers to start from one)
+- Make label button a toggle button 
 
+## Dialogue View
+- Size of text btn/color of text 
+- Background for labels/color of text
+- Label clear button?
+- Label/button text wrap
+- Speaker labels
+- Scrollable?
+- Move to next utterance if labels completed
 
+## Button bars
+- Text/button colours?
 - Use same button layout for a as b?
-- Highlight buttons for utterance label? (Group/toggle buttons)
+- Highlight buttons for utterance labels? (Group/toggle buttons)
 - Merge add label function?
-
-- Documentation
-
 - Make labels generic (model and view)??
+
+## Model
+- Labeled/unlabeled list?
+
+## MISC
+- De kivify?
+- Documentation

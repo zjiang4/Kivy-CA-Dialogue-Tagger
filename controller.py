@@ -4,7 +4,7 @@ from kivy.uix.togglebutton import ToggleButton
 from dialogue_model import Utterance, Dialogue, DialogueModel
 
 data_path = "data/"
-file_name = "train"
+file_name = "train_output"
 da_labels_file = "da_labels.txt"
 ap_labels_file = "ap_labels.txt"
 
@@ -97,6 +97,17 @@ class Controller:
 
     def refresh(self, instance):
         print('The button <refresh> is being pressed')
+        # GET DIALOGUE STATE
+
+    def toggle_mode(self, instance):
+        print('The button <toggle> is being pressed')
+
+        # If mode change is successful update dialogue_box
+        if self.model.change_mode():
+            self.update_dialogue()
+        # Else make sure toggle button does not change state
+        else:
+            instance.state = 'normal'
 
     def update_dialogue(self, selected_id=0):
 

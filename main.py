@@ -79,9 +79,17 @@ class MenuBar(BoxLayout):
         self.refresh_btn_layout.add_widget(self.refresh_btn)
         self.refresh_btn_layout.add_widget(self.refresh_img)
 
+        self.labeled_btn_layout = AnchorLayout(anchor_x='center', anchor_y='center', width=50, size_hint=(None, 1))
+        self.labeled_btn = ToggleButton(size=(40, 40), group='mode')
+        self.labeled_btn.bind(on_press=ctrl.toggle_mode)
+        self.labeled_img = Image(source='resources/labeled.png', height=40, width=40)
+        self.labeled_btn_layout.add_widget(self.labeled_btn)
+        self.labeled_btn_layout.add_widget(self.labeled_img)
+
         self.add_widget(self.menu_btn_layout)
         self.add_widget(self.save_btn_layout)
         self.add_widget(self.refresh_btn_layout)
+        self.add_widget(self.labeled_btn_layout)
 
 
 # Dialogue View

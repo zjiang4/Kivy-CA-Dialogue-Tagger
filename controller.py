@@ -121,11 +121,17 @@ class Controller:
         # Get the selected utterance button
         buttons = ToggleButton.get_widgets('utterances')
 
-        for btn in buttons:
-            if btn.state == 'down':
-                # Set the corresponding utterance as selected in the model
-                self.model.current_dialogue.set_current_utt(int(btn.id))
-                print("Utterance index: " + btn.id + " Utt: " + btn.text)
+        if instance.state == 'normal':
+            instance.state = 'down'
+            # Set the corresponding utterance as selected in the model
+            self.model.current_dialogue.set_current_utt(int(instance.id))
+            print("Selected utterance index: " + instance.id + " Utt: " + instance.text)
+        else:
+            for btn in buttons:
+                if btn.state == 'down':
+                    # Set the corresponding utterance as selected in the model
+                    self.model.current_dialogue.set_current_utt(int(instance.id))
+                    print("Selected utterance index: " + instance.id + " Utt: " + instance.text)
 
     def prev(self, instance):
         print('The button <prev> is being pressed')

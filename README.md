@@ -4,12 +4,12 @@ Tag dialogue utterances with Dialogue Acts and Adjacency Pairs
 # TODO
 ## Menu
 - Load functionality
+- Save as
 - Save only labeld functionality?
 - Refresh/clear functionality
 - Create ImageButttons instead (hover/press etc)
 - Info display of current dialogue and number
-- Select dialogue by number (change numbers to start from one)
-- Make label button a toggle button 
+- Tooltips
 
 ## Dialogue View
 - Size of text btn/color of text 
@@ -28,7 +28,6 @@ Tag dialogue utterances with Dialogue Acts and Adjacency Pairs
 - Make labels generic (model and view)??
 
 ## Model
-- Labeled/unlabeled list?
 
 ## MISC
 - De kivify?

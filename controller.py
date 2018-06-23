@@ -95,9 +95,14 @@ class Controller:
         # Save data to file
         utils.save_data(data_path, file_name + '_output', save_data)
 
-    def refresh(self, instance):
+    def reset(self, instance):
         print('The button <refresh> is being pressed')
-        # GET DIALOGUE STATE
+
+        # Get the current dialogue and clear the labels
+        self.model.current_dialogue.clear_labels()
+
+        # Update dialogue_box
+        self.update_dialogue(self.model.current_dialogue.utterance_index)
 
     def toggle_mode(self, instance):
         print('The button <toggle> is being pressed')
@@ -121,17 +126,15 @@ class Controller:
         # Get the selected utterance button
         buttons = ToggleButton.get_widgets('utterances')
 
+        # If button is currently selected then re=select
         if instance.state == 'normal':
             instance.state = 'down'
-            # Set the corresponding utterance as selected in the model
-            self.model.current_dialogue.set_current_utt(int(instance.id))
-            print("Selected utterance index: " + instance.id + " Utt: " + instance.text)
-        else:
-            for btn in buttons:
-                if btn.state == 'down':
-                    # Set the corresponding utterance as selected in the model
-                    self.model.current_dialogue.set_current_utt(int(instance.id))
-                    print("Selected utterance index: " + instance.id + " Utt: " + instance.text)
+
+        for btn in buttons:
+            if btn.state == 'down':
+                # Set the corresponding utterance as selected in the model
+                self.model.current_dialogue.set_current_utt(int(btn.id))
+                print("Selected utterance index: " + btn.id + " Utt: " + btn.text)
 
     def prev(self, instance):
         print('The button <prev> is being pressed')

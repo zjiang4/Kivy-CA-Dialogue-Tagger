@@ -135,6 +135,13 @@ class Dialogue:
         self.utterance_index = index
         self.current_utterance = self.utterances[self.utterance_index]
 
+    def clear_labels(self):
+
+        # Set utterances to default labels
+        for utt in self.utterances:
+            utt.clear_ap_label()
+            utt.clear_da_label()
+
     def check_labels(self):
 
         # Check if any utterances still have default labels
@@ -163,6 +170,12 @@ class Utterance:
     def set_da_label(self, label):
         self.da_label = label
         self.check_labels()
+
+    def clear_ap_label(self):
+        self.set_ap_label('AP-Label')
+
+    def clear_da_label(self):
+        self.set_da_label('DA-Label')
 
     def check_labels(self):
 

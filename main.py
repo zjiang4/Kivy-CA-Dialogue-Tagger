@@ -74,8 +74,8 @@ class MenuBar(BoxLayout):
 
         self.refresh_btn_layout = AnchorLayout(anchor_x='center', anchor_y='center', width=50, size_hint=(None, 1))
         self.refresh_btn = Button(size=(40, 40))
-        self.refresh_btn.bind(on_press=ctrl.refresh)
-        self.refresh_img = Image(source='resources/refresh.png', height=40, width=40)
+        self.refresh_btn.bind(on_press=ctrl.reset)
+        self.refresh_img = Image(source='resources/reset.png', height=40, width=40)
         self.refresh_btn_layout.add_widget(self.refresh_btn)
         self.refresh_btn_layout.add_widget(self.refresh_img)
 

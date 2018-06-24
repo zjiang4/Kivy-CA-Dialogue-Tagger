@@ -1,15 +1,16 @@
 # Dialogue-Tagger
 Tag dialogue utterances with Dialogue Acts and Adjacency Pairs
 
+Button colour = 88, 88, 88
+Button down colour = 50, 164, 206
 # TODO
 ## Menu
+- Menu?
 - Load functionality
 - Save as
-- Save only labeled functionality?
-- Create ImageButttons instead (hover/press etc)
-- Info display of current dialogue and number
+- Refresh/reload single dialogue functionality
+- Info display of current dialogue and numbers ect
 - Tooltips https://gist.github.com/opqopq/15c707dc4cffc2b6455f
-- Change reset to clear?
 
 ## Dialogue View
 - Size of text btn/color of text 
@@ -30,3 +31,23 @@ Tag dialogue utterances with Dialogue Acts and Adjacency Pairs
 ## MISC
 - De kivify?
 - Documentation
+
+#Misc
+    ### EXAMPLE FOR DE-KIVY-FYING ###
+    # CANVAS
+    #     with self.canvas:  # Instead of Kivy?
+    #         Color(53 / 255.0, 53 / 255.0, 53 / 255.0, 1)
+    #         self.rect = Rectangle(source='resources/background.png', pos=self.pos, size=self.size)
+    #     self.bind(pos=self.update_rect, size=self.update_rect)
+    #
+    # def update_rect(self, *args):# Instead of Kivy?
+    #     self.rect.pos = self.pos
+    #     self.rect.size = self.size
+    
+    # IMAGE BUTTON
+    # self.menu_btn_layout = AnchorLayout(anchor_x='center', anchor_y='center', width=50, size_hint=(None, 1))
+    # self.menu_btn = Button(size=(40, 40))
+    # self.menu_btn.bind(on_press=ctrl.menu)
+    # self.menu_img = Image(source='resources/menu.png', height=40, width=40)
+    # self.menu_btn_layout.add_widget(self.menu_btn)
+    # self.menu_btn_layout.add_widget(self.menu_img)

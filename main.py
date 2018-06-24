@@ -1,10 +1,10 @@
-from kivy.graphics.context_instructions import Color
-from kivy.graphics.vertex_instructions import Rectangle
-from kivy.uix.behaviors import ButtonBehavior
-from kivy.uix.image import Image
-import controller
 import kivy
 kivy.require('1.10.0')
+from kivy.app import App
+from kivy.config import Config
+# Configuration settings
+Config.set('graphics', 'width', '1300')
+Config.set('graphics', 'height', '850')
 
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.boxlayout import BoxLayout
@@ -13,13 +13,9 @@ from kivy.uix.stacklayout import StackLayout
 from kivy.uix.togglebutton import ToggleButton
 from kivy.uix.button import Button
 from kivy.uix.label import Label
-from kivy.uix.widget import Widget
-from kivy.app import App
-from kivy.config import Config
-
-# Configuration settings
-Config.set('graphics', 'width', '1300')
-Config.set('graphics', 'height', '850')
+from kivy.uix.image import Image
+from kivy_utilities import ImageButton, ImageToggleButton, Separator
+import controller
 
 # Create controller
 ctrl = controller.Controller()
@@ -58,38 +54,40 @@ class MenuBar(BoxLayout):
         self.padding = 5
         self.spacing = 5
 
-        self.menu_btn_layout = AnchorLayout(anchor_x='center', anchor_y='center', width=50, size_hint=(None, 1))
-        self.menu_btn = Button(size=(40, 40))
+        self.menu_btn = ImageButton(source='resources/menu.png', size=(40, 40), size_hint=(None, 1))
         self.menu_btn.bind(on_press=ctrl.menu)
-        self.menu_img = Image(source='resources/menu.png', height=40, width=40)
-        self.menu_btn_layout.add_widget(self.menu_btn)
-        self.menu_btn_layout.add_widget(self.menu_img)
 
-        self.save_btn_layout = AnchorLayout(anchor_x='center', anchor_y='center', width=50, size_hint=(None, 1))
-        self.save_btn = Button(size=(40, 40))
+        self.open_btn = ImageButton(source='resources/open.png', size=(40, 40), size_hint=(None, 1))
+        self.open_btn.bind(on_press=ctrl.open)
+
+        self.save_as_btn = ImageButton(source='resources/save-as.png', size=(40, 40), size_hint=(None, 1))
+        self.save_as_btn.bind(on_press=ctrl.save_as)
+
+        self.save_btn = ImageButton(source='resources/save.png', size=(40, 40), size_hint=(None, 1))
         self.save_btn.bind(on_press=ctrl.save)
-        self.save_img = Image(source='resources/save.png', height=40, width=40)
-        self.save_btn_layout.add_widget(self.save_btn)
-        self.save_btn_layout.add_widget(self.save_img)
 
-        self.refresh_btn_layout = AnchorLayout(anchor_x='center', anchor_y='center', width=50, size_hint=(None, 1))
-        self.refresh_btn = Button(size=(40, 40))
-        self.refresh_btn.bind(on_press=ctrl.reset)
-        self.refresh_img = Image(source='resources/reset.png', height=40, width=40)
-        self.refresh_btn_layout.add_widget(self.refresh_btn)
-        self.refresh_btn_layout.add_widget(self.refresh_img)
+        self.refresh_btn = ImageButton(source='resources/refresh.png', size=(40, 40), size_hint=(None, 1))
+        self.refresh_btn.bind(on_press=ctrl.refresh)
 
-        self.labeled_btn_layout = AnchorLayout(anchor_x='center', anchor_y='center', width=50, size_hint=(None, 1))
-        self.labeled_btn = ToggleButton(size=(40, 40), group='mode')
+        self.clear_btn = ImageButton(source='resources/clear.png', size=(40, 40), size_hint=(None, 1))
+        self.clear_btn.bind(on_press=ctrl.clear)
+
+        self.labeled_btn = ImageToggleButton(source='resources/labeled.png', size=(40, 40), size_hint=(None, 1), group='mode')
         self.labeled_btn.bind(on_press=ctrl.toggle_mode)
-        self.labeled_img = Image(source='resources/labeled.png', height=40, width=40)
-        self.labeled_btn_layout.add_widget(self.labeled_btn)
-        self.labeled_btn_layout.add_widget(self.labeled_img)
 
-        self.add_widget(self.menu_btn_layout)
-        self.add_widget(self.save_btn_layout)
-        self.add_widget(self.refresh_btn_layout)
-        self.add_widget(self.labeled_btn_layout)
+        self.add_widget(self.menu_btn)
+        self.add_widget(Separator(size_hint=(None, 1), width=1))
+        self.add_widget(self.open_btn)
+        self.add_widget(Separator(size_hint=(None, 1), width=1))
+        self.add_widget(self.save_as_btn)
+        self.add_widget(Separator(size_hint=(None, 1), width=1))
+        self.add_widget(self.save_btn)
+        self.add_widget(Separator(size_hint=(None, 1), width=1))
+        self.add_widget(self.refresh_btn)
+        self.add_widget(Separator(size_hint=(None, 1), width=1))
+        self.add_widget(self.clear_btn)
+        self.add_widget(Separator(size_hint=(None, 1), width=1))
+        self.add_widget(self.labeled_btn)
 
 
 # Dialogue View
@@ -97,16 +95,6 @@ class DialogueView(BoxLayout):
     def __init__(self, **kwargs):
         super(DialogueView, self).__init__(**kwargs)
         self.id = 'dialogue_view'
-
-    ### EXAMPLE FOR DE-KIVY-FYING ###
-    #     with self.canvas:  # Instead of Kivy?
-    #         Color(53 / 255.0, 53 / 255.0, 53 / 255.0, 1)
-    #         self.rect = Rectangle(source='resources/background.png', pos=self.pos, size=self.size)
-    #     self.bind(pos=self.update_rect, size=self.update_rect)
-    #
-    # def update_rect(self, *args):# Instead of Kivy?
-    #     self.rect.pos = self.pos
-    #     self.rect.size = self.size
 
     def next(self, instance):
         ctrl.next(instance)
@@ -136,7 +124,7 @@ class DialogueBox(BoxLayout):
             utterance_layout = BoxLayout(orientation='horizontal')
 
             # Create utterances button
-            utterance_btn = ToggleButton(text=dialogue.utterances[i].text, id=str(i), group='utterances')
+            utterance_btn = ToggleButton(text=dialogue.utterances[i].text, id=str(i), group='utterances', allow_no_selection=False)
             utterance_btn.bind(on_press=ctrl.set_selected_utt)
             # Set default or currently selected button
             if i == selected_id:

@@ -17,6 +17,9 @@ class Controller:
     def menu(self, instance):
         print('The button <menu> is being pressed')
 
+    def open(self, instance):
+        print('The button <open> is being pressed')
+
     def load(self):
 
         # Load JSON file
@@ -52,6 +55,9 @@ class Controller:
         model = DialogueModel(data['dataset'], ap_labels, da_labels, dialogues)
 
         return model
+
+    def save_as(self, instance):
+        print('The button <save_as> is being pressed')
 
     def save(self, instance):
         print('The button <save> is being pressed')
@@ -95,8 +101,11 @@ class Controller:
         # Save data to file
         utils.save_data(data_path, file_name, save_data)
 
-    def reset(self, instance):
+    def refresh(self, instance):
         print('The button <refresh> is being pressed')
+
+    def clear(self, instance):
+        print('The button <clear> is being pressed')
 
         # Get the current dialogue and clear the labels
         self.model.current_dialogue.clear_labels()
@@ -128,10 +137,6 @@ class Controller:
 
         # Get the selected utterance button
         buttons = ToggleButton.get_widgets('utterances')
-
-        # If button is currently selected then re-select
-        if instance.state == 'normal':
-            instance.state = 'down'
 
         for btn in buttons:
             if btn.state == 'down':

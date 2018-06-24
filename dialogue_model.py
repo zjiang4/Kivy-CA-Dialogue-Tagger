@@ -37,6 +37,7 @@ class DialogueModel:
                 self.dialogue_index = index
                 self.current_dialogue = self.unlabeled_dialogues[self.dialogue_index]
             return True
+
         elif not self.unlabeled_mode and self.num_labeled > 0:
             if self.num_labeled > index >= 0:
                 self.dialogue_index = index
@@ -90,14 +91,25 @@ class DialogueModel:
         else:
             num_dialogues = self.num_labeled
 
-        # Increment dialogue index or wrap to beginning
-        if self.dialogue_index + 1 < num_dialogues:
-            self.dialogue_index += 1
+        # If there is one or less dialogues do nothing
+        if num_dialogues == 0:
+            return False
         else:
-            self.dialogue_index = 0
+            # Increment dialogue index or wrap to beginning
+            if self.dialogue_index + 1 < num_dialogues:
+                self.dialogue_index += 1
+            else:
+                self.dialogue_index = 0
 
-        # Set new current dialogue with index
-        self.set_current_dialogue(self.dialogue_index)
+            # Set new current dialogue with index
+            self.set_current_dialogue(self.dialogue_index)
+
+            # Only change current utterance if this isn't the last dialogue
+            if num_dialogues > 1:
+                # Set new current dialogue index to 0
+                self.current_dialogue.set_current_utt(0)
+
+            return True
 
     def dec_current_dialogue(self):
 
@@ -110,14 +122,25 @@ class DialogueModel:
         else:
             num_dialogues = self.num_labeled
 
-        # Decrement dialogue index or wrap to end
-        if self.dialogue_index - 1 < 0:
-            self.dialogue_index = num_dialogues - 1
+        # If there is one or less dialogues do nothing
+        if num_dialogues == 0:
+            return False
         else:
-            self.dialogue_index -= 1
+            # Decrement dialogue index or wrap to end
+            if self.dialogue_index - 1 < 0:
+                self.dialogue_index = num_dialogues - 1
+            else:
+                self.dialogue_index -= 1
 
-        # Set new current dialogue with index
-        self.set_current_dialogue(self.dialogue_index)
+            # Set new current dialogue with index
+            self.set_current_dialogue(self.dialogue_index)
+
+            # Only change current utterance if this isn't the last dialogue
+            if num_dialogues > 1:
+                # Set new current dialogue index to 0
+                self.current_dialogue.set_current_utt(0)
+
+            return True
 
 
 class Dialogue:

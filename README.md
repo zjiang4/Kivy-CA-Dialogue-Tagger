@@ -8,8 +8,7 @@ Button down colour = 50, 164, 206
 - Menu?
 - Load functionality
 - Save as
-- Refresh/reload single dialogue functionality
-- Info display of current dialogue and numbers ect
+- Fit text to labels/labels to text?
 - Tooltips https://gist.github.com/opqopq/15c707dc4cffc2b6455f
 
 ## Dialogue View

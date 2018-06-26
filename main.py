@@ -8,12 +8,10 @@ Config.set('graphics', 'height', '850')
 
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.gridlayout import GridLayout
 from kivy.uix.stacklayout import StackLayout
 from kivy.uix.togglebutton import ToggleButton
 from kivy.uix.button import Button
 from kivy.uix.label import Label
-from kivy.uix.image import Image
 from kivy_utilities import ImageButton, ImageToggleButton, Separator
 import controller
 
@@ -54,6 +52,7 @@ class MenuBar(BoxLayout):
         self.padding = 5
         self.spacing = 5
 
+        # Buttons
         self.menu_btn = ImageButton(source='resources/menu.png', size=(40, 40), size_hint=(None, 1))
         self.menu_btn.bind(on_press=ctrl.menu)
 
@@ -75,6 +74,7 @@ class MenuBar(BoxLayout):
         self.labeled_btn = ImageToggleButton(source='resources/labeled.png', size=(40, 40), size_hint=(None, 1), group='mode')
         self.labeled_btn.bind(on_press=ctrl.toggle_mode)
 
+        # Add the widgets
         self.add_widget(self.menu_btn)
         self.add_widget(Separator(size_hint=(None, 1), width=1))
         self.add_widget(self.open_btn)
@@ -88,6 +88,40 @@ class MenuBar(BoxLayout):
         self.add_widget(self.clear_btn)
         self.add_widget(Separator(size_hint=(None, 1), width=1))
         self.add_widget(self.labeled_btn)
+        self.add_widget(Separator(size_hint=(None, 1), width=1))
+
+        # Create blank labels
+        self.current_dialogue_id_lbl = Label(text='', size_hint=(None, 1))
+        self.lbl_separator = Separator(size_hint=(None, 1), width=1)
+        self.labeled_lbl = Label(text='', size_hint=(None, 1))
+        self.unlabeled_lbl = Label(text='', size_hint=(None, 1))
+        self.total_lbl = Label(text='', size_hint=(None, 1))
+
+        # Display the stats labels
+        self.display_stats(*ctrl.get_current_stats())
+
+    def display_stats(self, dialogue_id='', labeled=0, unlabeled=0, total=0):
+
+        # Clear old labels
+        self.remove_widget(self.current_dialogue_id_lbl)
+        self.remove_widget(self.lbl_separator)
+        self.remove_widget(self.labeled_lbl)
+        self.remove_widget(self.unlabeled_lbl)
+        self.remove_widget(self.total_lbl)
+
+        # Create the labels
+        self.current_dialogue_id_lbl = Label(text='Current Dialogue: ' + dialogue_id, size_hint=(None, 1), width=200)
+        self.lbl_separator = Separator(size_hint=(None, 1), width=1)
+        self.labeled_lbl = Label(text='Labeled: ' + str(labeled), size_hint=(None, 1))
+        self.unlabeled_lbl = Label(text='Unlabeled: ' + str(unlabeled), size_hint=(None, 1))
+        self.total_lbl = Label(text='Total: ' + str(total), size_hint=(None, 1))
+
+        # Add to the menu bar
+        self.add_widget(self.current_dialogue_id_lbl)
+        self.add_widget(self.lbl_separator)
+        self.add_widget(self.labeled_lbl)
+        self.add_widget(self.unlabeled_lbl)
+        self.add_widget(self.total_lbl)
 
 
 # Dialogue View
@@ -110,7 +144,7 @@ class DialogueBox(BoxLayout):
         self.id = 'dialogue_box'
 
         # Load initial dialogue to view
-        self.display_dialogue(ctrl.model.current_dialogue)
+        self.display_dialogue(ctrl.get_current_dialogue())
 
     def display_dialogue(self, dialogue, selected_id=0):
 
@@ -149,7 +183,7 @@ class ButtonBarA(AnchorLayout):
         self.id = 'button_bar_a'
 
         # Get button labels
-        self.labels = ctrl.model.ap_labels
+        self.labels = ctrl.get_ap_labels()
 
         # Create button layout
         self.btn_layout = BoxLayout(size_hint=(None, 1), width=650, padding=5, spacing=5)
@@ -169,7 +203,7 @@ class ButtonBarB(AnchorLayout):
         self.id = 'button_bar_b'
 
         # Get button labels
-        self.labels = ctrl.model.da_labels
+        self.labels = ctrl.get_da_labels()
 
         # Create button layout
         self.btn_layout = StackLayout(size_hint=(0.9, 0.9), padding=5, spacing=5)

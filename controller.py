@@ -153,11 +153,12 @@ class Controller:
     def toggle_mode(self, instance):
         print('The button <toggle> is being pressed')
 
-        # If mode change is successful update dialogue_box
+        # If mode change is successful update dialogue_box and stats
         if self.model.change_mode():
             # Set the current dialogue index to 0
             self.model.current_dialogue.set_current_utt(0)
             self.update_dialogue()
+            self.update_stats()
         # Else make sure toggle button does not change state
         else:
             if instance.state == 'normal':
@@ -165,12 +166,33 @@ class Controller:
             elif instance.state == 'down':
                 instance.state = 'normal'
 
+    def get_current_stats(self):
+
+        # Get the current dialogue id
+        dialogue_id = self.get_current_dialogue().dialogue_id
+
+        # Get number of labeled/unlabeled and total dialogues
+        labeled = self.model.num_labeled
+        unlabeled = self.model.num_unlabeled
+        total = self.model.num_dialogues
+        return dialogue_id, labeled, unlabeled, total
+
+    def update_stats(self):
+
+        # Get the menu_bar and call update function
+        app = App.get_running_app()
+        menu_bar = app.root.get_widget('menu_bar')
+        menu_bar.display_stats(*self.get_current_stats())
+
+    def get_current_dialogue(self):
+        return self.model.current_dialogue
+
     def update_dialogue(self, selected_id=0):
 
         # Get the dialogue_box and call update function
         app = App.get_running_app()
         dialogue_box = app.root.get_widget('dialogue_box')
-        dialogue_box.display_dialogue(self.model.current_dialogue, selected_id)
+        dialogue_box.display_dialogue(self.get_current_dialogue(), selected_id)
 
     def set_selected_utt(self, instance):
 
@@ -180,40 +202,49 @@ class Controller:
         for btn in buttons:
             if btn.state == 'down':
                 # Set the corresponding utterance as selected in the model
-                self.model.current_dialogue.set_current_utt(int(btn.id))
+                self.get_current_dialogue().set_current_utt(int(btn.id))
                 print("Selected utterance index: " + btn.id + " Utt: " + btn.text)
 
     def prev(self, instance):
         print('The button <prev> is being pressed')
 
-        print("Index before: " + str(self.model.dialogue_index) + " ID: " + self.model.current_dialogue.dialogue_id)
-        # Decrement dialogue and if successful update dialogue_box
+        print("Index before: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
+        # Decrement dialogue and if successful update dialogue_box and stats
         if self.model.dec_current_dialogue():
-            print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.model.current_dialogue.dialogue_id)
-            self.update_dialogue(self.model.current_dialogue.utterance_index)
+            print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
+            self.update_dialogue(self.get_current_dialogue().utterance_index)
+            self.update_stats()
 
     def next(self, instance):
         print('The button <next> is being pressed')
 
-        print("Index before: " + str(self.model.dialogue_index) + " ID: " + self.model.current_dialogue.dialogue_id)
-        # Increment dialogue and if successful update dialogue_box
+        print("Index before: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
+        # Increment dialogue and if successful update dialogue_box and stats
         if self.model.inc_current_dialogue():
-            print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.model.current_dialogue.dialogue_id)
-            self.update_dialogue(self.model.current_dialogue.utterance_index)
+            print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
+            self.update_dialogue(self.get_current_dialogue().utterance_index)
+            self.update_stats()
+
+
+    def get_ap_labels(self):
+        return self.model.ap_labels
+
+    def get_da_labels(self):
+        return self.model.da_labels
 
     def add_label(self, instance):
         print('The button <%s> is being pressed' % instance.text)
 
-        # Get the current utterance
-        utterance = self.model.current_dialogue.current_utterance
+        # Get the current dialogue and utterance
+        dialogue = self.get_current_dialogue()
+        utterance = dialogue.current_utterance
         # Determine button set and set the label for the selected utterance
         if 'btn_bar_a' in instance.id:
             utterance.set_ap_label(instance.text)
         elif 'btn_bar_b' in instance.id:
             utterance.set_da_label(instance.text)
 
-        # Get the current dialogue
-        dialogue = self.model.current_dialogue
+
         # If the utterance is labeled and there are still some in the list
         if utterance.is_labeled and dialogue.utterance_index + 1 < dialogue.num_utterances:
             # Increment current utterance and update dialogue_box

@@ -146,7 +146,7 @@ class DialogueModel:
 class Dialogue:
 
     def __init__(self, dialogue_id, utterances):
-        self.id = dialogue_id
+        self.dialogue_id = dialogue_id
         self.utterances = utterances
         self.num_utterances = len(self.utterances)
         self.utterance_index = 0
@@ -157,6 +157,18 @@ class Dialogue:
     def set_current_utt(self, index):
         self.utterance_index = index
         self.current_utterance = self.utterances[self.utterance_index]
+
+    def set_utterances(self, utterances):
+
+        # Replace utterances
+        self.utterances = utterances
+        self.num_utterances = len(self.utterances)
+
+        # Reset current utterance to 0
+        self.set_current_utt(0)
+
+        # Check labels
+        self.check_labels()
 
     def clear_labels(self):
 

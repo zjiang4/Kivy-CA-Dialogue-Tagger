@@ -4,7 +4,7 @@ from kivy.uix.togglebutton import ToggleButton
 from dialogue_model import Utterance, Dialogue, DialogueModel
 
 data_path = "data/"
-file_name = "train"
+file_name = "train_test"
 da_labels_file = "da_labels.txt"
 ap_labels_file = "ap_labels.txt"
 
@@ -13,12 +13,6 @@ class Controller:
 
     def __init__(self):
         self.model = self.load()
-
-    def menu(self, instance):
-        print('The button <menu> is being pressed')
-
-    def open(self, instance):
-        print('The button <open> is being pressed')
 
     def load(self):
 
@@ -49,18 +43,14 @@ class Controller:
                 utterances.append(tmp_utterance)
 
             # Create a new dialogue with the utterances
-            dialogues.append(Dialogue(dialogue['id'], utterances))
+            dialogues.append(Dialogue(dialogue['dialogue_id'], utterances))
 
         # Create the dialogue model
         model = DialogueModel(data['dataset'], ap_labels, da_labels, dialogues)
 
         return model
 
-    def save_as(self, instance):
-        print('The button <save_as> is being pressed')
-
-    def save(self, instance):
-        print('The button <save> is being pressed')
+    def save(self):
 
         # Holds the save data
         save_data = dict()
@@ -86,7 +76,7 @@ class Controller:
                 utterances.append(tmp_utterance)
 
             # Add id, number of utterances and utterance to dialogue
-            tmp_dialogue['id'] = dialogue.id
+            tmp_dialogue['dialogue_id'] = dialogue.dialogue_id
             tmp_dialogue['num_utterances'] = dialogue.num_utterances
             tmp_dialogue['utterances'] = utterances
 
@@ -101,8 +91,55 @@ class Controller:
         # Save data to file
         utils.save_data(data_path, file_name, save_data)
 
+    def menu(self, instance):
+        print('The button <menu> is being pressed')
+
+    def open_file(self, instance):
+        print('The button <open> is being pressed')
+
+    def save_file_as(self, instance):
+        print('The button <save_as> is being pressed')
+
+    def save_file(self, instance):
+        print('The button <save_file> is being pressed')
+        self.save()
+
     def refresh(self, instance):
         print('The button <refresh> is being pressed')
+
+        # Load JSON file
+        data = utils.load_data(data_path, file_name)
+
+        # Get the current dialogues id
+        target_id = self.model.current_dialogue.dialogue_id
+
+        # Loop over the dialogues and utterances in the data
+        for dialogue in data['dialogues']:
+
+            # If the id's match get the utterances
+            if dialogue['dialogue_id'] == target_id:
+
+                utterances = []
+                for utterance in dialogue['utterances']:
+
+                    # Create a new utterance
+                    tmp_utterance = Utterance(utterance['text'], utterance['speaker'])
+
+                    # Set utterance labels if not blank
+                    if utterance['ap_label'] is not "":
+                        tmp_utterance.set_ap_label(utterance['ap_label'])
+                    if utterance['da_label'] is not "":
+                        tmp_utterance.set_da_label(utterance['da_label'])
+
+                    # Add to utterance list
+                    utterances.append(tmp_utterance)
+
+                # Update current dialogue with the utterances
+                self.model.current_dialogue.set_utterances(utterances)
+                break
+
+        # Update dialogue_box
+        self.update_dialogue()
 
     def clear(self, instance):
         print('The button <clear> is being pressed')
@@ -118,6 +155,8 @@ class Controller:
 
         # If mode change is successful update dialogue_box
         if self.model.change_mode():
+            # Set the current dialogue index to 0
+            self.model.current_dialogue.set_current_utt(0)
             self.update_dialogue()
         # Else make sure toggle button does not change state
         else:
@@ -147,19 +186,19 @@ class Controller:
     def prev(self, instance):
         print('The button <prev> is being pressed')
 
-        print("Index before: " + str(self.model.dialogue_index) + " ID: " + self.model.current_dialogue.id)
+        print("Index before: " + str(self.model.dialogue_index) + " ID: " + self.model.current_dialogue.dialogue_id)
         # Decrement dialogue and if successful update dialogue_box
         if self.model.dec_current_dialogue():
-            print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.model.current_dialogue.id)
+            print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.model.current_dialogue.dialogue_id)
             self.update_dialogue(self.model.current_dialogue.utterance_index)
 
     def next(self, instance):
         print('The button <next> is being pressed')
 
-        print("Index before: " + str(self.model.dialogue_index) + " ID: " + self.model.current_dialogue.id)
+        print("Index before: " + str(self.model.dialogue_index) + " ID: " + self.model.current_dialogue.dialogue_id)
         # Increment dialogue and if successful update dialogue_box
         if self.model.inc_current_dialogue():
-            print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.model.current_dialogue.id)
+            print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.model.current_dialogue.dialogue_id)
             self.update_dialogue(self.model.current_dialogue.utterance_index)
 
     def add_label(self, instance):

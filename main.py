@@ -58,13 +58,13 @@ class MenuBar(BoxLayout):
         self.menu_btn.bind(on_press=ctrl.menu)
 
         self.open_btn = ImageButton(source='resources/open.png', size=(40, 40), size_hint=(None, 1))
-        self.open_btn.bind(on_press=ctrl.open)
+        self.open_btn.bind(on_press=ctrl.open_file)
 
         self.save_as_btn = ImageButton(source='resources/save-as.png', size=(40, 40), size_hint=(None, 1))
-        self.save_as_btn.bind(on_press=ctrl.save_as)
+        self.save_as_btn.bind(on_press=ctrl.save_file_as)
 
         self.save_btn = ImageButton(source='resources/save.png', size=(40, 40), size_hint=(None, 1))
-        self.save_btn.bind(on_press=ctrl.save)
+        self.save_btn.bind(on_press=ctrl.save_file)
 
         self.refresh_btn = ImageButton(source='resources/refresh.png', size=(40, 40), size_hint=(None, 1))
         self.refresh_btn.bind(on_press=ctrl.refresh)

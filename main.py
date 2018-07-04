@@ -158,7 +158,7 @@ class DialogueBox(BoxLayout):
             utterance_layout = BoxLayout(orientation='horizontal')
 
             # Create utterances button
-            utterance_btn = ToggleButton(text=dialogue.utterances[i].text, id=str(i), group='utterances', allow_no_selection=False)
+            utterance_btn = ToggleButton(text= dialogue.utterances[i].speaker + ":" + dialogue.utterances[i].text, id=str(i), group='utterances', allow_no_selection=False)
             utterance_btn.bind(on_press=ctrl.set_selected_utt)
             # Set default or currently selected button
             if i == selected_id:

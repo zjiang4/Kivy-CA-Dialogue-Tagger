@@ -135,14 +135,14 @@
                 {
                     "speaker": "USR",
                     "text": "Hi, please set up a reminder for my dinner on the 11th at 4pm with my sister. Thanks!",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "acceptSuggest"
                 },
                 {
                     "speaker": "SYS",
                     "text": "Set! Have a good time",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "acceptSuggest"
                 }
             ]
         },
@@ -153,26 +153,26 @@
                 {
                     "speaker": "USR",
                     "text": "What time is dinner and who is it with?",
-                    "ap_label": "FPP-insert",
-                    "da_label": "request"
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "SYS",
                     "text": "Dinner is at 7 pm with Jon.",
-                    "ap_label": "FPP-insert",
-                    "da_label": "request"
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "USR",
                     "text": "Okay, perfect! Thanks.",
-                    "ap_label": "FPP-insert",
-                    "da_label": "declineSuggest"
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "SYS",
                     "text": "you're welcome",
-                    "ap_label": "FPP-insert",
-                    "da_label": "declineSuggest"
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 }
             ]
         }

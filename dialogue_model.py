@@ -82,9 +82,6 @@ class DialogueModel:
 
     def inc_current_dialogue(self):
 
-        # Update the current lists
-        self.get_dialogues_states()
-
         # Get number of dialogues in the current set
         if self.unlabeled_mode:
             num_dialogues = self.num_unlabeled
@@ -109,7 +106,10 @@ class DialogueModel:
                 # Set new current dialogue index to 0
                 self.current_dialogue.set_current_utt(0)
 
-            return True
+        # Update the current lists
+        self.get_dialogues_states()
+
+        return True
 
     def dec_current_dialogue(self):
 

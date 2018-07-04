@@ -1,3 +1,4 @@
+from kivy.clock import Clock
 import utilities as utils
 from kivy.app import App
 from kivy.uix.togglebutton import ToggleButton
@@ -51,7 +52,7 @@ class Controller:
         return model
 
     def save(self):
-
+        print("here save")
         # Holds the save data
         save_data = dict()
 
@@ -87,7 +88,7 @@ class Controller:
         save_data['dataset'] = self.model.dataset
         save_data['num_dialogues'] = self.model.num_dialogues
         save_data['dialogues'] = dialogues
-
+        print("here save2")
         # Save data to file
         utils.save_data(data_path, file_name, save_data)
 
@@ -102,7 +103,7 @@ class Controller:
 
     def save_file(self, instance):
         print('The button <save_file> is being pressed')
-        self.save()
+        Clock.schedule_once(lambda dt: self.save(), 0.5)
 
     def refresh(self, instance):
         print('The button <refresh> is being pressed')

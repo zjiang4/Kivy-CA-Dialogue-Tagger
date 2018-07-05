@@ -82,15 +82,18 @@ class DialogueModel:
 
     def inc_current_dialogue(self):
 
+        # Update the current lists and set
+        self.get_dialogues_states()
+
         # Get number of dialogues in the current set
         if self.unlabeled_mode:
             num_dialogues = self.num_unlabeled
         else:
             num_dialogues = self.num_labeled
 
-        # If there is one or less dialogues do nothing
-        if num_dialogues == 0:
-            return False
+        # If the current dialogue is labeled just keep the same index
+        if self.current_dialogue.check_labels() and self.unlabeled_mode:
+            self.dialogue_index = self.dialogue_index
         else:
             # Increment dialogue index or wrap to beginning
             if self.dialogue_index + 1 < num_dialogues:
@@ -98,16 +101,13 @@ class DialogueModel:
             else:
                 self.dialogue_index = 0
 
-            # Set new current dialogue with index
-            self.set_current_dialogue(self.dialogue_index)
+        # Set new current dialogue with index
+        self.set_current_dialogue(self.dialogue_index)
 
-            # Only change current utterance if this isn't the last dialogue
-            if num_dialogues > 1:
-                # Set new current dialogue index to 0
-                self.current_dialogue.set_current_utt(0)
-
-        # Update the current lists
-        self.get_dialogues_states()
+        # Only change current utterance if this isn't the last dialogue
+        if num_dialogues > 1:
+            # Set new current dialogue index to 0
+            self.current_dialogue.set_current_utt(0)
 
         return True
 
@@ -122,9 +122,9 @@ class DialogueModel:
         else:
             num_dialogues = self.num_labeled
 
-        # If there is one or less dialogues do nothing
-        if num_dialogues == 0:
-            return False
+        # If the current dialogue is labeled just keep the same index
+        if self.current_dialogue.check_labels() and self.unlabeled_mode:
+            self.dialogue_index = self.dialogue_index
         else:
             # Decrement dialogue index or wrap to end
             if self.dialogue_index - 1 < 0:
@@ -132,15 +132,15 @@ class DialogueModel:
             else:
                 self.dialogue_index -= 1
 
-            # Set new current dialogue with index
-            self.set_current_dialogue(self.dialogue_index)
+        # Set new current dialogue with index
+        self.set_current_dialogue(self.dialogue_index)
 
-            # Only change current utterance if this isn't the last dialogue
-            if num_dialogues > 1:
-                # Set new current dialogue index to 0
-                self.current_dialogue.set_current_utt(0)
+        # Only change current utterance if this isn't the last dialogue
+        if num_dialogues > 1:
+            # Set new current dialogue index to 0
+            self.current_dialogue.set_current_utt(0)
 
-            return True
+        return True
 
 
 class Dialogue:

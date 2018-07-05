@@ -5,7 +5,7 @@ from kivy.uix.togglebutton import ToggleButton
 from dialogue_model import Utterance, Dialogue, DialogueModel
 
 data_path = "data/"
-file_name = "train"
+file_name = "test"
 da_labels_file = "da_labels.txt"
 ap_labels_file = "ap_labels.txt"
 
@@ -52,7 +52,7 @@ class Controller:
         return model
 
     def save(self):
-        print("here save")
+
         # Holds the save data
         save_data = dict()
 
@@ -88,7 +88,7 @@ class Controller:
         save_data['dataset'] = self.model.dataset
         save_data['num_dialogues'] = self.model.num_dialogues
         save_data['dialogues'] = dialogues
-        print("here save2")
+
         # Save data to file
         utils.save_data(data_path, file_name, save_data)
 

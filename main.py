@@ -186,7 +186,7 @@ class ButtonBarA(AnchorLayout):
         self.labels = ctrl.get_ap_labels()
 
         # Create button layout
-        self.btn_layout = BoxLayout(size_hint=(None, 1), width=650, padding=5, spacing=5)
+        self.btn_layout = StackLayout(size_hint=(0.9, 0.9), padding=5, spacing=5)
         self.add_widget(self.btn_layout)
 
         # Add buttons to layout

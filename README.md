@@ -6,6 +6,7 @@ Button down colour = 50, 164, 206
 # TODO
 ## Menu
 - Menu?
+- Delete dialogue functionality?
 - Load functionality
 - Save as
 - Fit text to labels/labels to text?
@@ -21,7 +22,6 @@ Button down colour = 50, 164, 206
 
 ## Button bars
 - Text/button colours?
-- Use same button layout for a as b?
 - Highlight buttons for utterance labels? (Group/toggle buttons)
 - Make labels generic (model, controller and view)??
 

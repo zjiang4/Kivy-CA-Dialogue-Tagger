@@ -4,7 +4,7 @@ from kivy.app import App
 from kivy.config import Config
 # Configuration settings
 Config.set('graphics', 'width', '1300')
-Config.set('graphics', 'height', '850')
+Config.set('graphics', 'height', '800')
 
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.boxlayout import BoxLayout

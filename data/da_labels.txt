@@ -9,14 +9,10 @@ confirm
 disconfirm
 offer
 request
-addressRequest
-acceptRequest
-declineRequest
 suggest
-addressSuggest
-acceptSuggest
-declineSuggest
-instruct
+address
+accept
+decline
 autoPositive
 autoNegative
 stalling

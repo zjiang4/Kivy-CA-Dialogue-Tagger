@@ -33,7 +33,7 @@
                 {
                     "speaker": "SYS",
                     "text": "It looks like there is a road block being reported on the route but I will still find the quickest route to 550 Alester Ave.",
-                    "ap_label": "Non-AP",
+                    "ap_label": "Post",
                     "da_label": "inform"
                 },
                 {
@@ -81,20 +81,20 @@
                 {
                     "speaker": "SYS",
                     "text": "It is 4 miles away through moderate traffic",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "Post",
+                    "da_label": "inform"
                 },
                 {
                     "speaker": "USR",
                     "text": "Thanks!",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "thanking"
                 },
                 {
                     "speaker": "SYS",
                     "text": "Anytime!",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "acceptThanking"
                 }
             ]
         },
@@ -105,44 +105,44 @@
                 {
                     "speaker": "USR",
                     "text": "show me the closest location where i can get chinese food",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "request"
                 },
                 {
                     "speaker": "SYS",
                     "text": "The closest chinese restaurant is PF Changs, located 5 miles away.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "inform"
                 },
                 {
                     "speaker": "USR",
                     "text": "OK, please give me an address and directions via a route that avoids all heavy traffic.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "request"
                 },
                 {
                     "speaker": "SYS",
                     "text": "P.F. Changs route set to 669 El Camino Real with only moderate traffic noted.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "inform"
                 },
                 {
                     "speaker": "USR",
                     "text": "Thank you",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "thanking"
                 },
                 {
                     "speaker": "SYS",
                     "text": "You're welcome.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "acceptThanking"
                 },
                 {
                     "speaker": "SYS",
                     "text": "Drive safely, and enjoy.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "Post",
+                    "da_label": "request"
                 }
             ]
         },
@@ -153,26 +153,26 @@
                 {
                     "speaker": "USR",
                     "text": "Hi, please set up a reminder for my dinner on the 11th at 4pm with my sister.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "request"
                 },
                 {
                     "speaker": "USR",
                     "text": "Thanks!",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "Insert",
+                    "da_label": "thanking"
                 },
                 {
                     "speaker": "SYS",
                     "text": "Set!",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "accept"
                 },
                 {
                     "speaker": "SYS",
                     "text": "Have a good time",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "Post",
+                    "da_label": "inform"
                 }
             ]
         },
@@ -183,32 +183,32 @@
                 {
                     "speaker": "USR",
                     "text": "What time is dinner and who is it with?",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "setQuestion"
                 },
                 {
                     "speaker": "SYS",
                     "text": "Dinner is at 7 pm with Jon.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "answer"
                 },
                 {
                     "speaker": "USR",
                     "text": "Okay, perfect!",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "Post",
+                    "da_label": "autoPositive"
                 },
                 {
                     "speaker": "USR",
                     "text": "Thanks.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "thanking"
                 },
                 {
                     "speaker": "SYS",
                     "text": "you're welcome",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "acceptThanking"
                 }
             ]
         },
@@ -219,32 +219,32 @@
                 {
                     "speaker": "USR",
                     "text": "schedule dentist appointment",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "request"
                 },
                 {
                     "speaker": "SYS",
                     "text": "when is your dentist appointment",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-insert",
+                    "da_label": "setQuestion"
                 },
                 {
                     "speaker": "USR",
                     "text": "It is on Sunday at 2 pm.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-insert",
+                    "da_label": "answer"
                 },
                 {
                     "speaker": "SYS",
                     "text": "I have put on your calendar a dentist appointment on Sunday at 2 pm.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "inform"
                 },
                 {
                     "speaker": "USR",
                     "text": "Right on, thanks.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "Post",
+                    "da_label": "thanking"
                 }
             ]
         },
@@ -255,38 +255,38 @@
                 {
                     "speaker": "USR",
                     "text": "check forecast for new york",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "request"
                 },
                 {
                     "speaker": "SYS",
                     "text": "The weather this week will be hail and rain on Thursday and Sunday, with the lowest temperature being 20F and the highest 90F, Monday will be the only hot day.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "inform"
                 },
                 {
                     "speaker": "USR",
                     "text": "Will it be overcast on friday?",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "propositionalQuestion"
                 },
                 {
                     "speaker": "SYS",
                     "text": "On Friday it will be cloudy on New York",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "confirm"
                 },
                 {
                     "speaker": "USR",
                     "text": "Thank you!",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "thanking"
                 },
                 {
                     "speaker": "SYS",
                     "text": "You're welcome!",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "acceptThanking"
                 }
             ]
         },
@@ -297,74 +297,68 @@
                 {
                     "speaker": "USR",
                     "text": "Will it be warm in Camarillo over the next 2 days?",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "propositionalQuestion"
                 },
                 {
                     "speaker": "SYS",
                     "text": "No, it's not gonna be warm in Camarillo over the next 2 days",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "disconfirm"
                 },
                 {
                     "speaker": "USR",
                     "text": "Thank you car!",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "thanking"
                 },
                 {
                     "speaker": "SYS",
                     "text": "you are very welcome",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "acceptThanking"
                 }
             ]
         },
         {
             "dialogue_id": "train_9",
-            "num_utterances": 7,
+            "num_utterances": 6,
             "utterances": [
                 {
                     "speaker": "USR",
                     "text": "what's the highest temperature for this week",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "setQuestion"
                 },
                 {
                     "speaker": "SYS",
                     "text": "What location do you want to know the highest temperature?",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-insert",
+                    "da_label": "setQuestion"
                 },
                 {
                     "speaker": "USR",
                     "text": "Menlo Park, please",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-insert",
+                    "da_label": "answer"
                 },
                 {
                     "speaker": "SYS",
                     "text": "On Friday in Menlo Park it will be a high of 100f.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "answer"
                 },
                 {
                     "speaker": "USR",
-                    "text": "Excellent",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
-                },
-                {
-                    "speaker": "USR",
-                    "text": ", that's very helpful.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "text": "Excellent, that's very helpful.",
+                    "ap_label": "FPP-base",
+                    "da_label": "thanking"
                 },
                 {
                     "speaker": "SYS",
                     "text": "You are very welcome.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "acceptThanking"
                 }
             ]
         },
@@ -375,26 +369,26 @@
                 {
                     "speaker": "USR",
                     "text": "Will there be hail in Mountain View today?",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "propositionalQuestion"
                 },
                 {
                     "speaker": "SYS",
                     "text": "There will be clear skies today in Mountain View.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "disconfirm"
                 },
                 {
                     "speaker": "USR",
                     "text": "Thanks.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "thanking"
                 },
                 {
                     "speaker": "SYS",
                     "text": "Anytime.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "acceptThanking"
                 }
             ]
         },
@@ -405,26 +399,26 @@
                 {
                     "speaker": "USR",
                     "text": "Will the weather be warm in Menlo Park on Sunday?",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "propositionalQuestion"
                 },
                 {
                     "speaker": "SYS",
                     "text": "The highest temperature on sunday is 30F in menlo park",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "disconfirm"
                 },
                 {
                     "speaker": "USR",
                     "text": "Thanks.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "FPP-base",
+                    "da_label": "thanking"
                 },
                 {
                     "speaker": "SYS",
                     "text": "You are welcome.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
+                    "ap_label": "SPP-base",
+                    "da_label": "acceptThanking"
                 }
             ]
         },

@@ -21,6 +21,7 @@ Button down colour = 50, 164, 206
 - Scrollable?
 
 ## Button bars
+- Group AP labels by type? Four boxes (FPPbase, SPPbase and None AP for example)
 - Text/button colours?
 - Highlight buttons for utterance labels? (Group/toggle buttons)
 - Make labels generic (model, controller and view)??
@@ -29,7 +30,8 @@ Button down colour = 50, 164, 206
 
 ## MISC
 - De kivify?
-- Documentation
+- Documentation/readme
+- Add datasets
 
 #Misc
     ### EXAMPLE FOR DE-KIVY-FYING ###

@@ -1,7 +1,7 @@
 class DialogueModel:
     def __init__(self, dataset, ap_labels, da_labels, dialogues):
 
-        # Load default data
+        # Load data
         self.dataset = dataset
         self.ap_labels = ap_labels
         self.da_labels = da_labels
@@ -14,20 +14,57 @@ class DialogueModel:
         self.num_labeled = len(self.labeled_dialogues)
         self.num_unlabeled = len(self.unlabeled_dialogues)
         # Default current dialogue
+        self.default_dialogue = Dialogue('empty', [Utterance('No More Dialogues in the list!', '', '', '')])
         self.dialogue_index = 0
         self.current_dialogue = self.dialogues[self.dialogue_index]
 
         # Split into labeled and unlabeled
         self.get_dialogues_states()
 
-        # Set current mode
+        # Set current mode and dialogue
         if self.num_unlabeled > 0:
             self.unlabeled_mode = True
-        else:
+            self.set_current_dialogue(self.dialogue_index)
+        elif self.num_labeled > 0:
             self.unlabeled_mode = False
+            self.set_current_dialogue(self.dialogue_index)
+        else:
+            self.current_dialogue = self.default_dialogue
 
-        # Set current dialogue
-        self.set_current_dialogue(self.dialogue_index)
+    def change_mode(self):
+
+        # Update the current lists
+        self.get_dialogues_states()
+
+        # Change mode if there are dialogues in the list to change to
+        if self.unlabeled_mode and self.num_labeled > 0:
+            self.unlabeled_mode = False
+            return self.set_current_dialogue(0)
+
+        elif not self.unlabeled_mode and self.num_unlabeled > 0:
+            self.unlabeled_mode = True
+            return self.set_current_dialogue(0)
+
+        return False
+
+    def get_dialogues_states(self):
+
+        # Reset labeled and unlabeled lists
+        self.labeled_dialogues = []
+        self.unlabeled_dialogues = []
+
+        # Split dialogues into lists
+        for dialogue in self.dialogues:
+
+            if dialogue.check_labels():
+                self.labeled_dialogues.append(dialogue)
+            else:
+                self.unlabeled_dialogues.append(dialogue)
+
+        # Set number of labeled, unlabeled and total
+        self.num_labeled = len(self.labeled_dialogues)
+        self.num_unlabeled = len(self.unlabeled_dialogues)
+        self.num_dialogues = len(self.dialogues)
 
     def set_current_dialogue(self, index):
 
@@ -46,43 +83,24 @@ class DialogueModel:
 
         return False
 
-    def get_dialogues_states(self):
+    def delete_current_dialogue(self):
 
-        # Reset labeled and unlabeled lists
-        self.labeled_dialogues = []
-        self.unlabeled_dialogues = []
-
-        # Split dialogues into lists
+        # Delete the dialogue
         for dialogue in self.dialogues:
+            if dialogue.dialogue_id == self.current_dialogue.dialogue_id:
+                self.dialogues.remove(dialogue)
 
-            if dialogue.check_labels():
-                self.labeled_dialogues.append(dialogue)
-            else:
-                self.unlabeled_dialogues.append(dialogue)
-
-        # Set number of labeled and unlabeled
-        self.num_labeled = len(self.labeled_dialogues)
-        self.num_unlabeled = len(self.unlabeled_dialogues)
-
-    def change_mode(self):
+        # Increment to the next dialogue
+        self.inc_current_dialogue()
 
         # Update the current lists
         self.get_dialogues_states()
 
-        # Change mode if there are dialogues in the list to change to
-        if self.unlabeled_mode and self.num_labeled > 0:
-            self.unlabeled_mode = False
-            return self.set_current_dialogue(0)
-
-        elif not self.unlabeled_mode and self.num_unlabeled > 0:
-            self.unlabeled_mode = True
-            return self.set_current_dialogue(0)
-
-        return False
+        return True
 
     def inc_current_dialogue(self):
 
-        # Update the current lists and set
+        # Update the current lists
         self.get_dialogues_states()
 
         # Get number of dialogues in the current set
@@ -90,6 +108,12 @@ class DialogueModel:
             num_dialogues = self.num_unlabeled
         else:
             num_dialogues = self.num_labeled
+
+        # If no dialogues set default
+        if num_dialogues <= 0:
+            self.dialogue_index = 0
+            self.current_dialogue = self.default_dialogue
+            return False
 
         # If the current dialogue is labeled just keep the same index
         if self.current_dialogue.check_labels() and self.unlabeled_mode:
@@ -121,6 +145,12 @@ class DialogueModel:
             num_dialogues = self.num_unlabeled
         else:
             num_dialogues = self.num_labeled
+
+        # If no dialogues set default
+        if num_dialogues <= 0:
+            self.dialogue_index = 0
+            self.current_dialogue = self.default_dialogue
+            return False
 
         # If the current dialogue is labeled just keep the same index
         if self.current_dialogue.check_labels() and self.unlabeled_mode:

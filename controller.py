@@ -5,7 +5,7 @@ from kivy.uix.togglebutton import ToggleButton
 from dialogue_model import Utterance, Dialogue, DialogueModel
 
 data_path = "data/"
-file_name = "kvret_train_split"
+file_name = "test"
 da_labels_file = "da_labels.txt"
 ap_labels_file = "ap_labels.txt"
 
@@ -103,6 +103,7 @@ class Controller:
 
     def save_file(self, instance):
         print('The button <save_file> is being pressed')
+        # Delay call to save function so it doesn't interrupt button
         Clock.schedule_once(lambda dt: self.save(), 0.5)
 
     def refresh(self, instance):
@@ -142,6 +143,16 @@ class Controller:
         # Update dialogue_box
         self.update_dialogue()
 
+    def delete(self, instance):
+        print('The button <delete> is being pressed')
+
+        # Delete the current dialogue from the list
+        self.model.delete_current_dialogue()
+
+        # Update dialogue_box and stats
+        self.update_dialogue(self.model.current_dialogue.utterance_index)
+        self.update_stats()
+
     def clear(self, instance):
         print('The button <clear> is being pressed')
 
@@ -166,6 +177,11 @@ class Controller:
                 instance.state = 'down'
             elif instance.state == 'down':
                 instance.state = 'normal'
+
+    def get_mode(self):
+
+        # Get the current mode of the model
+            return self.model.unlabeled_mode
 
     def get_current_stats(self):
 
@@ -215,6 +231,10 @@ class Controller:
             print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
             self.update_dialogue(self.get_current_dialogue().utterance_index)
             self.update_stats()
+        else:
+            # Display default
+            self.update_dialogue(self.get_current_dialogue())
+            self.update_stats()
 
     def next(self, instance):
         print('The button <next> is being pressed')
@@ -225,7 +245,10 @@ class Controller:
             print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
             self.update_dialogue(self.get_current_dialogue().utterance_index)
             self.update_stats()
-
+        else:
+            # Display default
+            self.update_dialogue(self.get_current_dialogue())
+            self.update_stats()
 
     def get_ap_labels(self):
         return self.model.ap_labels

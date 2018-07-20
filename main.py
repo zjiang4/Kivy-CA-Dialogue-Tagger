@@ -52,6 +52,12 @@ class MenuBar(BoxLayout):
         self.padding = 5
         self.spacing = 5
 
+        # Get initial state for labeled button
+        if ctrl.get_mode():
+            self.labeled_btn_state = 'normal'
+        else:
+            self.labeled_btn_state = 'down'
+
         # Buttons
         self.menu_btn = ImageButton(source='resources/menu.png', size=(40, 40), size_hint=(None, 1))
         self.menu_btn.bind(on_press=ctrl.menu)
@@ -71,10 +77,13 @@ class MenuBar(BoxLayout):
         self.clear_btn = ImageButton(source='resources/clear.png', size=(40, 40), size_hint=(None, 1))
         self.clear_btn.bind(on_press=ctrl.clear)
 
+        self.delete_btn = ImageButton(source='resources/delete.png', size=(40, 40), size_hint=(None, 1))
+        self.delete_btn.bind(on_press=ctrl.delete)
+
         self.labeled_btn = ImageToggleButton(source='resources/labeled.png', size=(40, 40), size_hint=(None, 1), group='mode')
         self.labeled_btn.bind(on_press=ctrl.toggle_mode)
+        self.labeled_btn.state = self.labeled_btn_state
 
-        # Add the widgets
         self.add_widget(self.menu_btn)
         self.add_widget(Separator(size_hint=(None, 1), width=1))
         self.add_widget(self.open_btn)
@@ -86,6 +95,8 @@ class MenuBar(BoxLayout):
         self.add_widget(self.refresh_btn)
         self.add_widget(Separator(size_hint=(None, 1), width=1))
         self.add_widget(self.clear_btn)
+        self.add_widget(Separator(size_hint=(None, 1), width=1))
+        self.add_widget(self.delete_btn)
         self.add_widget(Separator(size_hint=(None, 1), width=1))
         self.add_widget(self.labeled_btn)
         self.add_widget(Separator(size_hint=(None, 1), width=1))
@@ -158,7 +169,7 @@ class DialogueBox(BoxLayout):
             utterance_layout = BoxLayout(orientation='horizontal')
 
             # Create utterances button
-            utterance_btn = ToggleButton(text= dialogue.utterances[i].speaker + ":" + dialogue.utterances[i].text, id=str(i), group='utterances', allow_no_selection=False)
+            utterance_btn = ToggleButton(text=dialogue.utterances[i].speaker + ":" + dialogue.utterances[i].text, id=str(i), group='utterances', allow_no_selection=False)
             utterance_btn.bind(on_press=ctrl.set_selected_utt)
             # Set default or currently selected button
             if i == selected_id:

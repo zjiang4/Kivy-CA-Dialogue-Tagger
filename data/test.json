@@ -1,6 +1,6 @@
 {
     "dataset": "train",
-    "num_dialogues": 5,
+    "num_dialogues": 3,
     "dialogues": [
         {
             "dialogue_id": "train_1",
@@ -125,54 +125,6 @@
                     "text": "You're welcome. Drive safely, and enjoy.",
                     "ap_label": "SPP-base",
                     "da_label": "initialGoodbye"
-                }
-            ]
-        },
-        {
-            "dialogue_id": "train_4",
-            "num_utterances": 2,
-            "utterances": [
-                {
-                    "speaker": "USR",
-                    "text": "Hi, please set up a reminder for my dinner on the 11th at 4pm with my sister. Thanks!",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
-                },
-                {
-                    "speaker": "SYS",
-                    "text": "Set! Have a good time",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
-                }
-            ]
-        },
-        {
-            "dialogue_id": "train_5",
-            "num_utterances": 4,
-            "utterances": [
-                {
-                    "speaker": "USR",
-                    "text": "What time is dinner and who is it with?",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
-                },
-                {
-                    "speaker": "SYS",
-                    "text": "Dinner is at 7 pm with Jon.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
-                },
-                {
-                    "speaker": "USR",
-                    "text": "Okay, perfect! Thanks.",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
-                },
-                {
-                    "speaker": "SYS",
-                    "text": "you're welcome",
-                    "ap_label": "AP-Label",
-                    "da_label": "DA-Label"
                 }
             ]
         }

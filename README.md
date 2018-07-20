@@ -6,7 +6,6 @@ Button down colour = 50, 164, 206
 # TODO
 ## Menu
 - Menu?
-- Delete dialogue functionality?
 - Load functionality
 - Save as
 - Fit text to labels/labels to text?
@@ -17,8 +16,10 @@ Button down colour = 50, 164, 206
 - Background for labels/color of text
 - Label clear button?
 - Label/button text wrap
-- Speaker labels
+- Speaker labels (remove colon in button labels)
 - Scrollable?
+- Edit utterance
+- Delete utterance
 
 ## Button bars
 - Group AP labels by type? Four boxes (FPPbase, SPPbase and None AP for example)
@@ -32,6 +33,7 @@ Button down colour = 50, 164, 206
 - De kivify?
 - Documentation/readme
 - Add datasets
+- Popup for exit and saving
 
 #Misc
     ### EXAMPLE FOR DE-KIVY-FYING ###

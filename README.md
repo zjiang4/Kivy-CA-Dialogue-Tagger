@@ -34,6 +34,8 @@ Button down colour = 50, 164, 206
 - Documentation/readme
 - Add datasets
 - Popup for exit and saving
+- Add Glowboards
+- Different default/empty list method/dialogue?
 
 #Misc
     ### EXAMPLE FOR DE-KIVY-FYING ###

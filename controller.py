@@ -58,9 +58,11 @@ class Controller:
 
         # Loop over the dialogues and utterances in the model
         dialogues = []
+        dialogue_index = 0
         for dialogue in self.model.dialogues:
 
             tmp_dialogue = dict()
+            dialogue_index += 1
 
             utterances = []
             for utterance in dialogue.utterances:
@@ -77,7 +79,7 @@ class Controller:
                 utterances.append(tmp_utterance)
 
             # Add id, number of utterances and utterance to dialogue
-            tmp_dialogue['dialogue_id'] = dialogue.dialogue_id
+            tmp_dialogue['dialogue_id'] = self.model.dataset + "_" + str(dialogue_index)
             tmp_dialogue['num_utterances'] = dialogue.num_utterances
             tmp_dialogue['utterances'] = utterances
 
@@ -181,7 +183,7 @@ class Controller:
     def get_mode(self):
 
         # Get the current mode of the model
-            return self.model.unlabeled_mode
+        return self.model.unlabeled_mode
 
     def get_current_stats(self):
 
@@ -222,12 +224,12 @@ class Controller:
                 self.get_current_dialogue().set_current_utt(int(btn.id))
                 print("Selected utterance index: " + btn.id + " Utt: " + btn.text)
 
-    def prev(self, instance):
-        print('The button <prev> is being pressed')
+    def next(self, instance):
+        print('The button <next> is being pressed')
 
         print("Index before: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
-        # Decrement dialogue and if successful update dialogue_box and stats
-        if self.model.dec_current_dialogue():
+        # Increment dialogue and if successful update dialogue_box and stats
+        if self.model.inc_current_dialogue():
             print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
             self.update_dialogue(self.get_current_dialogue().utterance_index)
             self.update_stats()
@@ -236,12 +238,12 @@ class Controller:
             self.update_dialogue(self.get_current_dialogue())
             self.update_stats()
 
-    def next(self, instance):
-        print('The button <next> is being pressed')
+    def prev(self, instance):
+        print('The button <prev> is being pressed')
 
         print("Index before: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
-        # Increment dialogue and if successful update dialogue_box and stats
-        if self.model.inc_current_dialogue():
+        # Decrement dialogue and if successful update dialogue_box and stats
+        if self.model.dec_current_dialogue():
             print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
             self.update_dialogue(self.get_current_dialogue().utterance_index)
             self.update_stats()
@@ -262,12 +264,12 @@ class Controller:
         # Get the current dialogue and utterance
         dialogue = self.get_current_dialogue()
         utterance = dialogue.current_utterance
+
         # Determine button set and set the label for the selected utterance
         if 'btn_bar_a' in instance.id:
             utterance.set_ap_label(instance.text)
         elif 'btn_bar_b' in instance.id:
             utterance.set_da_label(instance.text)
-
 
         # If the utterance is labeled and there are still some in the list
         if utterance.is_labeled and dialogue.utterance_index + 1 < dialogue.num_utterances:

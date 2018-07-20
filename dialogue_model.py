@@ -14,9 +14,9 @@ class DialogueModel:
         self.num_labeled = len(self.labeled_dialogues)
         self.num_unlabeled = len(self.unlabeled_dialogues)
         # Default current dialogue
-        self.default_dialogue = Dialogue('empty', [Utterance('No More Dialogues in the list!', '', '', '')])
+        self.default_dialogue = Dialogue('Empty', [Utterance('No Dialogues In The List!', '', '', '')])
         self.dialogue_index = 0
-        self.current_dialogue = self.dialogues[self.dialogue_index]
+        self.current_dialogue = self.default_dialogue
 
         # Split into labeled and unlabeled
         self.get_dialogues_states()
@@ -29,6 +29,7 @@ class DialogueModel:
             self.unlabeled_mode = False
             self.set_current_dialogue(self.dialogue_index)
         else:
+            self.unlabeled_mode = True
             self.current_dialogue = self.default_dialogue
 
     def change_mode(self):
@@ -86,15 +87,11 @@ class DialogueModel:
     def delete_current_dialogue(self):
 
         # Delete the dialogue
-        for dialogue in self.dialogues:
-            if dialogue.dialogue_id == self.current_dialogue.dialogue_id:
-                self.dialogues.remove(dialogue)
+        if self.current_dialogue in self.dialogues:
+            self.dialogues.remove(self.current_dialogue)
 
         # Increment to the next dialogue
         self.inc_current_dialogue()
-
-        # Update the current lists
-        self.get_dialogues_states()
 
         return True
 
@@ -110,14 +107,16 @@ class DialogueModel:
             num_dialogues = self.num_labeled
 
         # If no dialogues set default
-        if num_dialogues <= 0:
+        if num_dialogues == 0:
             self.dialogue_index = 0
             self.current_dialogue = self.default_dialogue
             return False
 
-        # If the current dialogue is labeled just keep the same index
-        if self.current_dialogue.check_labels() and self.unlabeled_mode:
-            self.dialogue_index = self.dialogue_index
+        # If the current dialogue is labeled or has been deleted
+        if (self.current_dialogue.check_labels() and self.unlabeled_mode) or (self.current_dialogue not in self.dialogues):
+            # If we are at the end wrap to beginning; else keep index the same
+            if self.dialogue_index >= num_dialogues:
+                self.dialogue_index = 0
         else:
             # Increment dialogue index or wrap to beginning
             if self.dialogue_index + 1 < num_dialogues:
@@ -130,7 +129,7 @@ class DialogueModel:
 
         # Only change current utterance if this isn't the last dialogue
         if num_dialogues > 1:
-            # Set new current dialogue index to 0
+            # Set new current dialogue utterance index to 0
             self.current_dialogue.set_current_utt(0)
 
         return True
@@ -147,27 +146,23 @@ class DialogueModel:
             num_dialogues = self.num_labeled
 
         # If no dialogues set default
-        if num_dialogues <= 0:
+        if num_dialogues == 0:
             self.dialogue_index = 0
             self.current_dialogue = self.default_dialogue
             return False
 
-        # If the current dialogue is labeled just keep the same index
-        if self.current_dialogue.check_labels() and self.unlabeled_mode:
-            self.dialogue_index = self.dialogue_index
+        # Decrement dialogue index or wrap to end
+        if self.dialogue_index - 1 < 0:
+            self.dialogue_index = num_dialogues - 1
         else:
-            # Decrement dialogue index or wrap to end
-            if self.dialogue_index - 1 < 0:
-                self.dialogue_index = num_dialogues - 1
-            else:
-                self.dialogue_index -= 1
+            self.dialogue_index -= 1
 
         # Set new current dialogue with index
         self.set_current_dialogue(self.dialogue_index)
 
         # Only change current utterance if this isn't the last dialogue
         if num_dialogues > 1:
-            # Set new current dialogue index to 0
+            # Set new current dialogue utterance index to 0
             self.current_dialogue.set_current_utt(0)
 
         return True

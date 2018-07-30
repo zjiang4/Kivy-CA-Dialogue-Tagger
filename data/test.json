@@ -9,14 +9,14 @@
                 {
                     "speaker": "USR",
                     "text": "where's the nearest parking garage",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "FPP-pre",
+                    "da_label": "offer"
                 },
                 {
                     "speaker": "SYS",
                     "text": "The nearest parking garage is Dish Parking at 550 Alester Ave.",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "FPP-pre",
+                    "da_label": "offer",
                     "slots": {
                         "distance": "nearest",
                         "poi_type": "parking garage"
@@ -25,8 +25,8 @@
                 {
                     "speaker": "SYS",
                     "text": "Would you like directions there?",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "SPP-post",
+                    "da_label": "offer",
                     "slots": {
                         "distance": "nearest",
                         "poi_type": "parking garage"
@@ -35,14 +35,14 @@
                 {
                     "speaker": "USR",
                     "text": "Yes, please set directions via a route that avoids all heavy traffic if possible.",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "SPP-post",
+                    "da_label": "offer"
                 },
                 {
                     "speaker": "SYS",
                     "text": "It looks like there is a road block being reported on the route but I will still find the quickest route to 550 Alester Ave.",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "SPP-post",
+                    "da_label": "offer",
                     "slots": {
                         "traffic_info": "avoid heavy traffic ",
                         "poi": "dish parking"
@@ -51,14 +51,14 @@
                 {
                     "speaker": "USR",
                     "text": "Thanks so much for your help.",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "SPP-post",
+                    "da_label": "offer"
                 },
                 {
                     "speaker": "SYS",
                     "text": "You're very welcome!",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "SPP-post",
+                    "da_label": "autoNegative",
                     "slots": {}
                 }
             ],
@@ -133,14 +133,14 @@
                 {
                     "speaker": "USR",
                     "text": "Where is the nearest gas station?",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "SYS",
                     "text": "There is a 76 4 miles away.",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label",
                     "slots": {
                         "distance": "nearest ",
                         "poi_type": "gas station"
@@ -149,34 +149,34 @@
                 {
                     "speaker": "USR",
                     "text": "What is the address?",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "SYS",
                     "text": "The 76 gas station is located at 91 El Camino Real.",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label",
                     "slots": {}
                 },
                 {
                     "speaker": "SYS",
                     "text": "It is 4 miles away through moderate traffic",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label",
                     "slots": {}
                 },
                 {
                     "speaker": "USR",
                     "text": "Thanks!",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "SYS",
                     "text": "Anytime!",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label",
                     "slots": {}
                 }
             ],
@@ -251,14 +251,14 @@
                 {
                     "speaker": "USR",
                     "text": "show me the closest location where i can get chinese food",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "SYS",
                     "text": "The closest chinese restaurant is PF Changs, located 5 miles away.",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label",
                     "slots": {
                         "distance": "closest",
                         "poi_type": "chinese restaurant"
@@ -267,14 +267,14 @@
                 {
                     "speaker": "USR",
                     "text": "OK, please give me an address and directions via a route that avoids all heavy traffic.",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "SYS",
                     "text": "P.F. Changs route set to 669 El Camino Real with only moderate traffic noted.",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label",
                     "slots": {
                         "traffic_info": "avoid heavy traffic"
                     }
@@ -282,21 +282,21 @@
                 {
                     "speaker": "USR",
                     "text": "Thank you",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "SYS",
                     "text": "You're welcome.",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label",
                     "slots": {}
                 },
                 {
                     "speaker": "SYS",
                     "text": "Drive safely, and enjoy.",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label",
                     "slots": {}
                 }
             ],
@@ -371,20 +371,20 @@
                 {
                     "speaker": "USR",
                     "text": "Hi, please set up a reminder for my dinner on the 11th at 4pm with my sister.",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "USR",
                     "text": "Thanks!",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "SYS",
                     "text": "Set!",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label",
                     "slots": {
                         "date": "11th ",
                         "party": "sister",
@@ -395,8 +395,8 @@
                 {
                     "speaker": "SYS",
                     "text": "Have a good time",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label",
                     "slots": {
                         "date": "11th ",
                         "party": "sister",
@@ -419,14 +419,14 @@
                 {
                     "speaker": "USR",
                     "text": "What time is dinner and who is it with?",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "SYS",
                     "text": "Dinner is at 7 pm with Jon.",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label",
                     "slots": {
                         "event": "dinner"
                     }
@@ -434,20 +434,20 @@
                 {
                     "speaker": "USR",
                     "text": "Okay, perfect!",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "USR",
                     "text": "Thanks.",
-                    "ap_label": "",
-                    "da_label": ""
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label"
                 },
                 {
                     "speaker": "SYS",
                     "text": "you're welcome",
-                    "ap_label": "",
-                    "da_label": "",
+                    "ap_label": "AP-Label",
+                    "da_label": "DA-Label",
                     "slots": {}
                 }
             ],

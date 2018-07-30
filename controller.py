@@ -40,11 +40,15 @@ class Controller:
                 if utterance['da_label'] is not "":
                     tmp_utterance.set_da_label(utterance['da_label'])
 
+                # Set the slots if they exist
+                if 'slots' in utterance:
+                    tmp_utterance.slots = utterance['slots']
+
                 # Add to utterance list
                 utterances.append(tmp_utterance)
 
             # Create a new dialogue with the utterances
-            dialogues.append(Dialogue(dialogue['dialogue_id'], utterances))
+            dialogues.append(Dialogue(dialogue['dialogue_id'], utterances, dialogue['scenario']))
 
         # Create the dialogue model
         model = DialogueModel(data['dataset'], ap_labels, da_labels, dialogues)
@@ -75,13 +79,18 @@ class Controller:
                 tmp_utterance['ap_label'] = utterance.ap_label
                 tmp_utterance['da_label'] = utterance.da_label
 
+                # Add slots to utterance if they exist
+                if utterance.slots is not None:
+                    tmp_utterance['slots'] = utterance.slots
+
                 # Add to utterance list
                 utterances.append(tmp_utterance)
 
-            # Add id, number of utterances and utterance to dialogue
+            # Add id, number of utterances, utterance and scenario to dialogue
             tmp_dialogue['dialogue_id'] = self.model.dataset + "_" + str(dialogue_index)
             tmp_dialogue['num_utterances'] = dialogue.num_utterances
             tmp_dialogue['utterances'] = utterances
+            tmp_dialogue['scenario'] = dialogue.scenario
 
             # Add to dialogue list
             dialogues.append(tmp_dialogue)

@@ -35,7 +35,8 @@
             pos: self.pos
             size: self.size
             source: 'resources/background.png'
-    size_hint: 1, 0.6
+#    size_hint: 1, 0.6
+    size_hint: 1, 1
     orientation: 'horizontal'
 
     Button:
@@ -80,7 +81,9 @@
         Rectangle:
             pos: self.pos
             size: self.size
-    size_hint: 1, 0.15
+#    size_hint: 1, 0.15
+    size_hint_x: 1
+    size_hint_max_y: 100
     anchor_x: 'center'
     anchor_y: 'center'
 
@@ -92,6 +95,8 @@
         Rectangle:
             pos: self.pos
             size: self.size
-    size_hint: 1, 0.35
+#    size_hint: 1, 0.35
+    size_hint_x: 1
+    size_hint_max_y: 200
     anchor_x: 'center'
     anchor_y: 'center'

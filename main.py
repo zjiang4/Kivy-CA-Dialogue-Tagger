@@ -202,7 +202,7 @@ class ButtonBarA(AnchorLayout):
 
         # Add buttons to layout
         for i in range(len(self.labels)):
-            btn = Button(text=self.labels[i],  id='btn_bar_a_' + str(i), font_size='15', size_hint_max_x=160, size_hint_max_y=40)
+            btn = Button(text=self.labels[i],  id='btn_bar_a' + str(i), font_size='15',size_hint_max=(160, 40))
             btn.bind(on_press=ctrl.add_label)
             self.btn_layout.add_widget(btn)
 
@@ -222,7 +222,7 @@ class ButtonBarB(AnchorLayout):
 
         # Add buttons to layout
         for i in range(len(self.labels)):
-            btn = Button(text=self.labels[i], id='btn_bar_b' + str(i), font_size='15', size_hint_max_x=160, size_hint_max_y=40)
+            btn = Button(text=self.labels[i], id='btn_bar_b' + str(i), font_size='15', size_hint_max=(160, 40))
             btn.bind(on_press=ctrl.add_label)
             self.btn_layout.add_widget(btn)
 

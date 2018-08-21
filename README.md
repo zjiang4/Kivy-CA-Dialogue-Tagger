@@ -26,10 +26,12 @@ Button down colour = 50, 164, 206
 - Text/button colours?
 - Highlight buttons for utterance labels? (Group/toggle buttons)
 - Make labels generic (model, controller and view)??
+- Resize bar to fit buttons
 
 ## Model
 
 ## MISC
+- Size on smaller screen?
 - De kivify?
 - Documentation/readme
 - Add datasets

@@ -34,12 +34,13 @@ Button down colour = 50, 164, 206
 - Size on smaller screen?
 - De kivify?
 - Documentation/readme
+- DA and AP label instructions in readme
 - Add datasets
 - Popup for exit and saving
 - Add Glowboards
 - Different default/empty list method/dialogue?
 
-#Misc
+
     ### EXAMPLE FOR DE-KIVY-FYING ###
     # CANVAS
     #     with self.canvas:  # Instead of Kivy?

@@ -15,6 +15,7 @@ Button down colour = 50, 164, 206
 - Size of text btn/color of text 
 - Background for labels/color of text
 - Label clear button?
+- Label edit?
 - Label/button text wrap
 - Speaker labels (remove colon in button labels)
 - Scrollable?

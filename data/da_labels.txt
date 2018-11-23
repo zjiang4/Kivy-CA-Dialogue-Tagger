@@ -6,6 +6,7 @@ inform
 answer
 agreement
 disagreement
+correction
 confirm
 disconfirm
 offer
@@ -32,4 +33,3 @@ thanking
 acceptThanking
 apology
 acceptApology
-None

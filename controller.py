@@ -5,7 +5,7 @@ from kivy.uix.togglebutton import ToggleButton
 from dialogue_model import Utterance, Dialogue, DialogueModel
 
 data_path = "data/"
-file_name = "kvret_train_set"
+file_name = "kvret_test_set"
 da_labels_file = "da_labels.txt"
 ap_labels_file = "ap_labels.txt"
 

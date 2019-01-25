@@ -223,15 +223,14 @@ class Controller:
         dialogue_box.display_dialogue(self.get_current_dialogue(), selected_id)
 
     def set_selected_utt(self, instance):
-
+        self.get_current_dialogue().set_current_utt(int(instance.id))
         # Get the selected utterance button
-        buttons = ToggleButton.get_widgets('utterances')
-
-        for btn in buttons:
-            if btn.state == 'down':
-                # Set the corresponding utterance as selected in the model
-                self.get_current_dialogue().set_current_utt(int(btn.id))
-                print("Selected utterance index: " + btn.id + " Utt: " + btn.text)
+        # buttons = ToggleButton.get_widgets('utterances')
+        # for btn in buttons:
+        #     if btn.state == 'down':
+        #         # Set the corresponding utterance as selected in the model
+        #         self.get_current_dialogue().set_current_utt(int(btn.id))
+        #         print("Selected utterance index: " + btn.id + " Utt: " + btn.text)
 
     def next(self, instance):
         print('The button <next> is being pressed')
@@ -242,10 +241,10 @@ class Controller:
             print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
             self.update_dialogue(self.get_current_dialogue().utterance_index)
             self.update_stats()
-        else:
-            # Display default
-            self.update_dialogue(self.get_current_dialogue())
-            self.update_stats()
+        # else:
+        #     # Display default
+        #     self.update_dialogue(self.get_current_dialogue())
+        #     self.update_stats()
 
     def prev(self, instance):
         print('The button <prev> is being pressed')
@@ -256,10 +255,10 @@ class Controller:
             print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
             self.update_dialogue(self.get_current_dialogue().utterance_index)
             self.update_stats()
-        else:
-            # Display default
-            self.update_dialogue(self.get_current_dialogue())
-            self.update_stats()
+        # else:
+        #     # Display default
+        #     self.update_dialogue(self.get_current_dialogue())
+        #     self.update_stats()
 
     def get_ap_labels(self):
         return self.model.ap_labels

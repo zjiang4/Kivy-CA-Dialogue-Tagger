@@ -1,13 +1,14 @@
-# Dialogue-Tagger
+# Conversation Analysis Dialogue Tagger
 Tag dialogue utterances with Dialogue Acts and Adjacency Pairs
 
 Button colour = 88, 88, 88
 Button down colour = 50, 164, 206
 # TODO
 ## Menu
-- Menu?
+- Menu? (export as plain text)
 - Load functionality
 - Save as
+- Popup warning for delete dialogue
 - Fit text to labels/labels to text?
 - Tooltips https://gist.github.com/opqopq/15c707dc4cffc2b6455f
 

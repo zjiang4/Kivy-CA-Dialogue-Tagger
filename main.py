@@ -15,8 +15,13 @@ from kivy.uix.label import Label
 from kivy_utilities import ImageButton, ImageToggleButton, Separator
 import controller
 
+data_path = "data/"
+dialogue_file = "kvret_test_set"
+da_labels_file = "da_labels.txt"
+ap_labels_file = "ap_labels.txt"
+
 # Create controller
-ctrl = controller.Controller()
+ctrl = controller.Controller(data_path, dialogue_file, da_labels_file, ap_labels_file)
 
 
 # Root layout
@@ -59,28 +64,28 @@ class MenuBar(BoxLayout):
             self.labeled_btn_state = 'down'
 
         # Buttons
-        self.menu_btn = ImageButton(source='resources/menu.png', size=(40, 40), size_hint=(None, 1))
+        self.menu_btn = ImageButton(source='resources/menu_white.png', size=(40, 40), size_hint=(None, 1))
         self.menu_btn.bind(on_press=ctrl.menu)
 
-        self.open_btn = ImageButton(source='resources/open.png', size=(40, 40), size_hint=(None, 1))
+        self.open_btn = ImageButton(source='resources/open_white.png', size=(40, 40), size_hint=(None, 1))
         self.open_btn.bind(on_press=ctrl.open_file)
 
-        self.save_as_btn = ImageButton(source='resources/save-as.png', size=(40, 40), size_hint=(None, 1))
+        self.save_as_btn = ImageButton(source='resources/save_as_white.png', size=(40, 40), size_hint=(None, 1))
         self.save_as_btn.bind(on_press=ctrl.save_file_as)
 
-        self.save_btn = ImageButton(source='resources/save.png', size=(40, 40), size_hint=(None, 1))
+        self.save_btn = ImageButton(source='resources/save_white.png', size=(40, 40), size_hint=(None, 1))
         self.save_btn.bind(on_press=ctrl.save_file)
 
-        self.refresh_btn = ImageButton(source='resources/refresh.png', size=(40, 40), size_hint=(None, 1))
+        self.refresh_btn = ImageButton(source='resources/refresh_white.png', size=(40, 40), size_hint=(None, 1))
         self.refresh_btn.bind(on_press=ctrl.refresh)
 
-        self.clear_btn = ImageButton(source='resources/clear.png', size=(40, 40), size_hint=(None, 1))
+        self.clear_btn = ImageButton(source='resources/clear_white.png', size=(40, 40), size_hint=(None, 1))
         self.clear_btn.bind(on_press=ctrl.clear)
 
-        self.delete_btn = ImageButton(source='resources/delete.png', size=(40, 40), size_hint=(None, 1))
+        self.delete_btn = ImageButton(source='resources/delete_circle_red.png', size=(40, 40), size_hint=(None, 1))
         self.delete_btn.bind(on_press=ctrl.delete)
 
-        self.labeled_btn = ImageToggleButton(source='resources/labeled.png', size=(40, 40), size_hint=(None, 1), group='mode')
+        self.labeled_btn = ImageToggleButton(source='resources/labelled_white.png', size=(40, 40), size_hint=(None, 1), group='mode')
         self.labeled_btn.bind(on_press=ctrl.toggle_mode)
         self.labeled_btn.state = self.labeled_btn_state
 
@@ -202,7 +207,7 @@ class ButtonBarA(AnchorLayout):
 
         # Add buttons to layout
         for i in range(len(self.labels)):
-            btn = Button(text=self.labels[i],  id='btn_bar_a' + str(i), font_size='15',size_hint_max=(160, 40))
+            btn = Button(text=self.labels[i],  id='btn_bar_a' + str(i), font_size='15', size_hint_max=(160, 40))
             btn.bind(on_press=ctrl.add_label)
             self.btn_layout.add_widget(btn)
 

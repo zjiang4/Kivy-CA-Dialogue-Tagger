@@ -1,28 +1,27 @@
 from kivy.clock import Clock
 import utilities as utils
 from kivy.app import App
-from kivy.uix.togglebutton import ToggleButton
 from dialogue_model import Utterance, Dialogue, DialogueModel
-
-data_path = "data/"
-file_name = "kvret_test_set"
-da_labels_file = "da_labels.txt"
-ap_labels_file = "ap_labels.txt"
 
 
 class Controller:
 
-    def __init__(self):
+    def __init__(self, data_path, dialogue_file, da_labels_file, ap_labels_file):
+        self.data_path = data_path
+        self.dialogue_file = dialogue_file
+        self.da_labels_file = da_labels_file
+        self.ap_labels_file = ap_labels_file
+        # Load dialogue file
         self.model = self.load()
 
     def load(self):
 
         # Load JSON file
-        data = utils.load_data(data_path, file_name)
+        data = utils.load_data(self.data_path, self.dialogue_file)
 
         # Load labels
-        da_labels = utils.load_labels(data_path, da_labels_file)
-        ap_labels = utils.load_labels(data_path, ap_labels_file)
+        da_labels = utils.load_labels(self.data_path, self.da_labels_file)
+        ap_labels = utils.load_labels(self.data_path, self.ap_labels_file)
 
         # Loop over the dialogues and utterances in the data
         dialogues = []
@@ -101,7 +100,7 @@ class Controller:
         save_data['dialogues'] = dialogues
 
         # Save data to file
-        utils.save_data(data_path, file_name, save_data)
+        utils.save_data(self.data_path, self.dialogue_file, save_data)
 
     def menu(self, instance):
         print('The button <menu> is being pressed')
@@ -121,7 +120,7 @@ class Controller:
         print('The button <refresh> is being pressed')
 
         # Load JSON file
-        data = utils.load_data(data_path, file_name)
+        data = utils.load_data(self.data_path, self.dialogue_file)
 
         # Get the current dialogues id
         target_id = self.model.current_dialogue.dialogue_id

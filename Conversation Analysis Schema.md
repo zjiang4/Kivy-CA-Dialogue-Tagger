@@ -30,11 +30,34 @@ update the information state (Bunt *et al.*, 2012).
 
 Contents
 ========
-[Adjacency Pairs](#Adjacency Pairs)
+[Adjacency Pairs](#Adjacency-Pairs)
+-----------------
+[Base](#Base)
+
+[Expansions](#Expansions)
 
 [Minimal-expansions](#Minimal-expansions)
 
-[Post-expansions](#Post-expansions)
+[Dialogue Acts](#Dialouge-Acts)
+---------------
+[Information-seeking Functions](#Information-seeking-Functions)
+
+[Information-providing Functions](#Information-providing-Functions)
+
+[Commissive Functions](#Commissive-Functions)
+
+[Directive Functions](#Directive-Functions)
+
+[Feedback Functions](#Feedback-Functions)
+
+[Time Management Functions](#Time-Management-Functions)
+
+[Own and Partner Communication Management Functions](#Own-and-Partner-Communication-Management-Functions)
+
+[Social Obligations Management Functions](#Social-Obligations-Management-Functions)
+
+[References](#References)
+------------
 
 Adjacency Pairs
 ===============

@@ -40,6 +40,7 @@ Button down colour = 50, 164, 206
 - Popup for exit and saving
 - Add Glowboards
 - Different default/empty list method/dialogue?
+- Handle no valid file to load/save
 
 
     ### EXAMPLE FOR DE-KIVY-FYING ###

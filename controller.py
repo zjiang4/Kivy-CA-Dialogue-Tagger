@@ -1,7 +1,7 @@
 from kivy.clock import Clock
 import utilities as utils
 from kivy.app import App
-from dialogue_model import Utterance, Dialogue, DialogueModel
+from dialogue_model import Utterance, DialogueModel
 
 
 class Controller:
@@ -16,45 +16,46 @@ class Controller:
 
     def load(self):
 
-        # Load JSON file
-        data = utils.load_data(self.data_path, self.dialogue_file)
-
         # Load labels
         da_labels = utils.load_labels(self.data_path, self.da_labels_file)
         ap_labels = utils.load_labels(self.data_path, self.ap_labels_file)
 
-        # Loop over the dialogues and utterances in the data
-        dialogues = []
-        for dialogue in data['dialogues']:
+        # If unable to load labels inform user and exit
+        if not da_labels and not ap_labels:
+            print("unable to load label lists...Exiting program.")
 
-            utterances = []
-            for utterance in dialogue['utterances']:
+        # Load default data
+        default_data = utils.load_data(self.data_path, 'default')
 
-                # Create a new utterance
-                tmp_utterance = Utterance(utterance['text'], utterance['speaker'])
+        # Load JSON file
+        data = utils.load_data(self.data_path, self.dialogue_file)
 
-                # Set utterance labels if not blank
-                if utterance['ap_label'] is not "":
-                    tmp_utterance.set_ap_label(utterance['ap_label'])
-                if utterance['da_label'] is not "":
-                    tmp_utterance.set_da_label(utterance['da_label'])
+        # If file is not valid or invalid JSON
+        if not data:
 
-                # Set the slots if they exist
-                if 'slots' in utterance:
-                    tmp_utterance.slots = utterance['slots']
+            # Try default data
+            if default_data:
+                data = default_data
+            # Else exit
+            else:
+                print("Unable to load default JSON data...Exiting program.")
+                exit()
 
-                # Add to utterance list
-                utterances.append(tmp_utterance)
+        # Create dialogue object
+        dialogues = utils.load_dialogues(data)
 
-            # Create a new dialogue with the utterances
-            tmp_dialogue = Dialogue(dialogue['dialogue_id'], utterances)
+        # If JSON is not valid or keys missing
+        if not dialogues:
 
-            # Set the scenario if it exists
-            if 'scenario' in dialogue:
-                tmp_dialogue.scenario = dialogue['scenario']
-
-            # Add to dialogue list
-            dialogues.append(tmp_dialogue)
+            # Try default dialogues
+            default_dialogues = utils.load_dialogues(default_data)
+            if default_dialogues:
+                # TODO popup to tell user loading default data.
+                dialogues = default_dialogues
+            # Else exit
+            else:
+                print("Unable to load default JSON data...Exiting program.")
+                exit()
 
         # Create the dialogue model
         model = DialogueModel(data['dataset'], ap_labels, da_labels, dialogues)
@@ -62,7 +63,6 @@ class Controller:
         return model
 
     def save(self):
-
         # Holds the save data
         save_data = dict()
 
@@ -199,12 +199,10 @@ class Controller:
                 instance.state = 'normal'
 
     def get_mode(self):
-
         # Get the current mode of the model
         return self.model.unlabeled_mode
 
     def get_current_stats(self):
-
         # Get the current dialogue id
         dialogue_id = self.get_current_dialogue().dialogue_id
 
@@ -215,7 +213,6 @@ class Controller:
         return dialogue_id, labeled, unlabeled, total
 
     def update_stats(self):
-
         # Get the menu_bar and call update function
         app = App.get_running_app()
         menu_bar = app.root.get_widget('menu_bar')
@@ -225,7 +222,6 @@ class Controller:
         return self.model.current_dialogue
 
     def update_dialogue(self, selected_id=0):
-
         # Get the dialogue_box and call update function
         app = App.get_running_app()
         dialogue_box = app.root.get_widget('dialogue_box')
@@ -250,10 +246,6 @@ class Controller:
             print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
             self.update_dialogue(self.get_current_dialogue().utterance_index)
             self.update_stats()
-        # else:
-        #     # Display default
-        #     self.update_dialogue(self.get_current_dialogue())
-        #     self.update_stats()
 
     def prev(self, instance):
         print('The button <prev> is being pressed')
@@ -264,10 +256,6 @@ class Controller:
             print("Index after: " + str(self.model.dialogue_index) + " ID: " + self.get_current_dialogue().dialogue_id)
             self.update_dialogue(self.get_current_dialogue().utterance_index)
             self.update_stats()
-        # else:
-        #     # Display default
-        #     self.update_dialogue(self.get_current_dialogue())
-        #     self.update_stats()
 
     def get_ap_labels(self):
         return self.model.ap_labels
@@ -296,4 +284,3 @@ class Controller:
         # Else just update dialogue_box
         else:
             self.update_dialogue(dialogue.utterance_index)
-

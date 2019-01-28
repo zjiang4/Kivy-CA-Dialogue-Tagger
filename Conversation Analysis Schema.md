@@ -1,4 +1,4 @@
-#Conversation Analysis Schema
+# Conversation Analysis Schema
 
 Overview
 ========
@@ -38,7 +38,7 @@ Contents
 
 [Minimal-expansions](#Minimal-expansions)
 
-[Dialogue Acts](#Dialouge-Acts)
+[Dialogue Acts](#Dialogue-Acts)
 ---------------
 [Information-seeking Functions](#Information-seeking-Functions)
 
@@ -56,7 +56,7 @@ Contents
 
 [Social Obligations Management Functions](#Social-Obligations-Management-Functions)
 
-[References](#References)
+[Reference List](#References)
 ------------
 
 Adjacency Pairs

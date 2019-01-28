@@ -41,9 +41,9 @@ class ImageButton(ButtonBehavior, Image):
 
     def on_enter(self):
         with self.canvas.before:
-            Color(88 / 255.0, 88 / 255.0, 88 / 255.0, 1)
+            Color(88 / 255.0, 88 / 255.0, 88 / 255.0, 1)  # Button up colour
             Rectangle(pos=self.pos, size=self.size)
-            Color(111 / 255.0, 111 / 255.0, 111 / 255.0, 1)
+            Color(111 / 255.0, 111 / 255.0, 111 / 255.0, 1)  # Button hover outline colour
             Line(rectangle=(self.x+1, self.y+1, self.width-1, self.height-1), width=1)
 
     def on_leave(self):
@@ -51,16 +51,16 @@ class ImageButton(ButtonBehavior, Image):
 
     def on_press(self):
         with self.canvas.before:
-            Color(50 / 255.0, 164 / 255.0, 206 / 255.0, 1)
+            Color(50 / 255.0, 164 / 255.0, 206 / 255.0, 1)  # Button down colour
             Rectangle(pos=self.pos, size=self.size)
-            Color(111 / 255.0, 111 / 255.0, 111 / 255.0, 1)
+            Color(111 / 255.0, 111 / 255.0, 111 / 255.0, 1)  # Button hover outline colour
             Line(rectangle=(self.x + 1, self.y + 1, self.width - 1, self.height - 1), width=1)
 
     def on_release(self):
         with self.canvas.before:
-            Color(88 / 255.0, 88 / 255.0, 88 / 255.0, 1)
+            Color(88 / 255.0, 88 / 255.0, 88 / 255.0, 1)  # Button up colour
             Rectangle(pos=self.pos, size=self.size)
-            Color(111 / 255.0, 111 / 255.0, 111 / 255.0, 1)
+            Color(111 / 255.0, 111 / 255.0, 111 / 255.0, 1)  # Button hover outline colour
             Line(rectangle=(self.x+1, self.y+1, self.width-1, self.height-1), width=1)
 
 
@@ -119,19 +119,19 @@ class ImageToggleButton(ToggleButtonBehavior, Image):
     def set_state(self, *args):
         if self.state == 'down':
             with self.canvas.before:
-                Color(50 / 255.0, 164 / 255.0, 206 / 255.0, 1)
+                Color(50 / 255.0, 164 / 255.0, 206 / 255.0, 1)  # Button down colour
                 Rectangle(pos=self.pos, size=self.size)
-                Color(111 / 255.0, 111 / 255.0, 111 / 255.0, 1)
+                Color(111 / 255.0, 111 / 255.0, 111 / 255.0, 1)  # Button hover outline colour
                 Line(rectangle=(self.x + 1, self.y + 1, self.width - 1, self.height - 1), width=1)
         else:
             if self.hovered:
                 with self.canvas.before:
-                    Color(88 / 255.0, 88 / 255.0, 88 / 255.0, 1)
+                    Color(88 / 255.0, 88 / 255.0, 88 / 255.0, 1)  # Button hover colour
                     Rectangle(pos=self.pos, size=self.size)
-                    Color(111 / 255.0, 111 / 255.0, 111 / 255.0, 1)
+                    Color(111 / 255.0, 111 / 255.0, 111 / 255.0, 1)  # Button hover outline colour
                     Line(rectangle=(self.x+1, self.y+1, self.width-1, self.height-1), width=1)
             else:
-                with self.canvas.before:
+                with self.canvas.before:  # Button up colour
                     Color(53 / 255.0, 53 / 255.0, 53 / 255.0, 1)
                     Rectangle(pos=self.pos, size=self.size)
 

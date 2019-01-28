@@ -14,7 +14,7 @@ class DialogueModel:
         self.num_labeled = len(self.labeled_dialogues)
         self.num_unlabeled = len(self.unlabeled_dialogues)
         # Default current dialogue
-        self.default_dialogue = Dialogue('Empty', [Utterance('No Dialogues In The List!', '', '', '')], dict())
+        self.default_dialogue = Dialogue('Empty', [Utterance('No Dialogues In The List!', '', '', '')])
         self.dialogue_index = 0
         self.current_dialogue = self.default_dialogue
 
@@ -170,7 +170,7 @@ class DialogueModel:
 
 class Dialogue:
 
-    def __init__(self, dialogue_id, utterances, scenario):
+    def __init__(self, dialogue_id, utterances):
         self.dialogue_id = dialogue_id
         self.utterances = utterances
         self.num_utterances = len(self.utterances)
@@ -178,7 +178,7 @@ class Dialogue:
         self.current_utterance = self.utterances[0]
         self.is_labeled = False
         self.check_labels()
-        self.scenario = scenario
+        self.scenario = None
 
     def set_current_utt(self, index):
         self.utterance_index = index

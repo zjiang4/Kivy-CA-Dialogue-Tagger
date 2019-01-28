@@ -47,7 +47,14 @@ class Controller:
                 utterances.append(tmp_utterance)
 
             # Create a new dialogue with the utterances
-            dialogues.append(Dialogue(dialogue['dialogue_id'], utterances, dialogue['scenario']))
+            tmp_dialogue = Dialogue(dialogue['dialogue_id'], utterances)
+
+            # Set the scenario if it exists
+            if 'scenario' in dialogue:
+                tmp_dialogue.scenario = dialogue['scenario']
+
+            # Add to dialogue list
+            dialogues.append(tmp_dialogue)
 
         # Create the dialogue model
         model = DialogueModel(data['dataset'], ap_labels, da_labels, dialogues)
@@ -89,7 +96,10 @@ class Controller:
             tmp_dialogue['dialogue_id'] = self.model.dataset + "_" + str(dialogue_index)
             tmp_dialogue['num_utterances'] = dialogue.num_utterances
             tmp_dialogue['utterances'] = utterances
-            tmp_dialogue['scenario'] = dialogue.scenario
+
+            # Add scenario to dialogue if is exists
+            if dialogue.scenario is not None:
+                tmp_dialogue['scenario'] = dialogue.scenario
 
             # Add to dialogue list
             dialogues.append(tmp_dialogue)

@@ -242,4 +242,3 @@ class DialogueTaggerApp(App):
 
 if __name__ == "__main__":
     DialogueTaggerApp().run()
-

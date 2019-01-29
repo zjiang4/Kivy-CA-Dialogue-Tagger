@@ -1,9 +1,9 @@
 {
-    "dataset": "dataset_name",
+    "dataset": "default",
     "num_dialogues": 1,
     "dialogues": [
         {
-            "dialogue_id": "dataset_name_1",
+            "dialogue_id": "default_1",
             "num_utterances": 2,
             "utterances": [
                 {

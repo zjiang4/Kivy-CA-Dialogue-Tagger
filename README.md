@@ -29,7 +29,7 @@ Removes any changes to the __current__ dialogue since the last save.
 ![clear_btn](/resources/clear_black.png)  
 Removes all labels from the __current__ dialogue.
 
-![delete_btn](/resources/delete__circle_red.png)  
+![delete_btn](/resources/delete_circle_red.png)  
 Deletes __current__ dialogue from the dataset.
 
 ![labelled_btn](/resources/labelled_black.png)  

@@ -1,9 +1,9 @@
 {
-    "dataset": "train",
+    "dataset": "test",
     "num_dialogues": 5,
     "dialogues": [
         {
-            "dialogue_id": "train_1",
+            "dialogue_id": "test_1",
             "num_utterances": 7,
             "utterances": [
                 {
@@ -127,7 +127,7 @@
             }
         },
         {
-            "dialogue_id": "train_2",
+            "dialogue_id": "test_2",
             "num_utterances": 7,
             "utterances": [
                 {
@@ -245,7 +245,7 @@
             }
         },
         {
-            "dialogue_id": "train_3",
+            "dialogue_id": "test_3",
             "num_utterances": 7,
             "utterances": [
                 {
@@ -365,7 +365,7 @@
             }
         },
         {
-            "dialogue_id": "train_4",
+            "dialogue_id": "test_4",
             "num_utterances": 4,
             "utterances": [
                 {
@@ -413,7 +413,7 @@
             }
         },
         {
-            "dialogue_id": "train_5",
+            "dialogue_id": "test_5",
             "num_utterances": 5,
             "utterances": [
                 {

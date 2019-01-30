@@ -90,9 +90,9 @@ in that AP set up expectations about how talk will proceed.
 
 **Example:**
 
-A: What time is it? *FPP-base - setQuestion*
+A: What time is it? &emsp; *FPP-base - setQuestion*
 
-B: Three o’ clock. *SPP-base - answer*
+B: Three o’ clock. &emsp; *SPP-base - answer*
 
 Expansions
 ----------
@@ -112,13 +112,13 @@ and are hearable by participants as preludes to some other action.
 
 **Example:**
 
-A: What you doing? *FPP-pre - setQuestion*
+A: What you doing? &emsp; *FPP-pre - setQuestion*
 
-B: Not much. *SPP-pre - answer*
+B: Not much. &emsp;&emsp;&emsp;&emsp; *SPP-pre - answer*
 
-A: Wanna drink? *FPP-base - propositionalQuestion*
+&emsp; A: Wanna drink? &emsp;&emsp; *FPP-base - propositionalQuestion*
 
-B: Sure. *SPP-base - confirm*
+&emsp; B: Sure. &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; *SPP-base - confirm*
 
 ### Insert-expansions
 
@@ -134,13 +134,13 @@ base SPP once again becomes relevant as the next action.
 
 **Example:**
 
-A: Do you know the directions? *FPP-base - setQuestion*
+A: Do you know the directions? &emsp; *FPP-base - setQuestion*
 
-B: You driving or walking? *FPP-second-insert - choiceQuestion*
+&emsp; B: You driving or walking? &emsp;&emsp;&emsp;&emsp; *FPP-second-insert - choiceQuestion*
 
-A: Walking. *SPP-second-insert - answer*
+&emsp; A: Walking. &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; *SPP-second-insert - answer*
 
-B: Get on the subway. *SPP-base - answer*
+B: Get on the subway. &emsp;&emsp;&emsp;&emsp; *SPP-base - answer*
 
 ### Post-expansions
 
@@ -155,13 +155,13 @@ sequences to be expanded after their SPP.
 
 **Example:**
 
-A: What is the weather like today in tomorrow? *FPP-base - setQuestion*
+A: What is the weather like today in tomorrow? &emsp; *FPP-base - setQuestion*
 
-B: Forecast for cloudy skies today. *SPP-base - answer*
+B: Forecast for cloudy skies today. &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; *SPP-base - answer*
 
-A: Okay. *FPP-post - autoPositive*
+&emsp; A: Okay. &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;*FPP-post - autoPositive*
 
-B: No problem. *SPP-post - acceptThanking*
+&emsp; B: No problem. &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; *SPP-post - acceptThanking*
 
 Minimal-expansions
 ------------------
@@ -176,13 +176,13 @@ additional turns that behave as expansions but consist only of one turn.
 
 **Example:**
 
-A: When is my dentist appointment? *FPP-base - setQuestion*
+A: When is my dentist appointment? &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; *FPP-base - setQuestion*
 
-A: Who am I going with? *Insert - setQuestion*
+&emsp; A: Who am I going with? &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; *Insert - setQuestion*
 
-B: The appointment is at 11 am with your Aunt. *SPP-base - answer*
+B: The appointment is at 11 am with your Aunt. &emsp; *SPP-base - answer*
 
-A: Thanks. *Post - thanking*
+A: Thanks. &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; *Post - thanking*
 
 Dialogue Acts
 =============

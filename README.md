@@ -14,7 +14,7 @@ This software is written in Python 3.6 using the [Kivy library](https://kivy.org
 ## Usage
 Currently input corpus data must be in the /data directory and filenames manually specified at the top of main.py.
 DA and AP labels are specified in .txt files with one label per line. Dialogues must be in a .json file
-in [this format](#Data-Foramt).
+in [this format](#Data-Format).
 
 Currently the menu, open file and save-as buttons are not yet implemented.
 ![menu_btn](/resources/menu_black.png)![open_btn](/resources/open_black.png)![save_as_btn](/resources/save_as_black.png)

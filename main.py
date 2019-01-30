@@ -16,7 +16,7 @@ from kivy_utilities import ImageButton, ImageToggleButton, Separator
 import controller
 
 data_path = "data/"
-dialogue_file = "test"
+dialogue_file = "kvret_test_set"
 da_labels_file = "da_labels.txt"
 ap_labels_file = "ap_labels.txt"
 
